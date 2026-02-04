@@ -116,6 +116,20 @@ li[class="searchbar-child"]:hover
 	color: white;
 }
 
+.function-name {
+	font-weight: bold;
+}
+
+.function-category {
+	font-size: 0.85em;
+	color: var(--text-secondary);
+	margin-left: 5px;
+}
+
+li[class="searchbar-child"]:hover .function-category {
+	color: rgba(255, 255, 255, 0.8);
+}
+
 @media (max-width: 910px) {
 	.sidebar {
 		position:static;
