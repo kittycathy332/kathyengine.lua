@@ -6,22 +6,73 @@
 	font-style: normal;
 }
 
+/* CSS Variables for Theme Colors */
+:root
+{
+	--bg-primary: #f8f9fa;
+	--bg-secondary: #e9ecef;
+	--bg-tertiary: #dee2e6;
+	--text-primary: #212529;
+	--text-secondary: #6c757d;
+	--border-color: #ced4da;
+	--hover-color: #0d6efd;
+	--link-color: #0d6efd;
+	--link-hover: #0b5ed7;
+	--link-visited: #5c7cfa;
+}
+
+@media (prefers-color-scheme: dark)
+{
+	:root
+	{
+		--bg-primary: #1a1d23;
+		--bg-secondary: #252a33;
+		--bg-tertiary: #2d3440;
+		--text-primary: #e9ecef;
+		--text-secondary: #adb5bd;
+		--border-color: #495057;
+		--hover-color: #4dabf7;
+		--link-color: #4dabf7;
+		--link-hover: #3b8dd6;
+		--link-visited: #748ffc;
+	}
+}
+
 *
 {
- 	font-family: 'Franklin Gothic Book', 'Calibri';
+	font-family: 'Franklin Gothic Book', 'Calibri';
 	scroll-padding-top: 90px;
 }
 
-@media (prefers-color-scheme: dark) {
-	*
-	{
-		color-scheme: dark;
-	}
+body
+{
+	background-color: var(--bg-primary);
+	color: var(--text-primary);
+}
+
+/* Link Styles */
+a
+{
+	color: var(--link-color);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+a:hover
+{
+	color: var(--link-hover);
+	text-decoration: underline;
+}
+
+a:visited
+{
+	color: var(--link-visited);
 }
 
 hr
 {
-	border-color: lightslategray;
+	border-color: var(--border-color);
+	opacity: 0.5;
 }
 
 .logoImage
@@ -38,17 +89,19 @@ hr
 	margin-top: 100px;
 	padding: 0px 20px 10px;
 	float: left;
-	border: 2px solid lightslategray;
+	border: 2px solid var(--border-color);
 	border-radius: 10px;
 	margin-bottom: 80px;
 	padding-bottom: 30px;
+	background-color: var(--bg-secondary);
 }
 
 .methodbox
 {
 	padding: 5px;
-	border: 2px solid #0000003F;
+	border: 2px solid var(--border-color);
 	width: fit-content;
+	background-color: var(--bg-tertiary);
 }
 
 .methoddiv
@@ -59,8 +112,10 @@ hr
 .methodexample
 {
 	padding: 5px;
-	background-color: #7F7F7F5F;
+	background-color: var(--bg-tertiary);
 	width: fit-content;
+	border-radius: 4px;
+	font-family: monospace;
 }
 
 .exampleitem
@@ -76,17 +131,18 @@ hr
 
 .variablemarkup
 {
-	color: #6666CF;
+	color: #5c7cfa;
 }
 
 .isoptional
 {
-	color: #999999;
+	color: var(--text-secondary);
+	font-style: italic;
 }
 
 .haxecode
 {
-	color: #CC7733;
+	color: #ff922b;
 }
 
 @media (max-width: 910px) {

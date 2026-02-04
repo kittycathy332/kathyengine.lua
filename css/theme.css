@@ -6,8 +6,9 @@
 	bottom: 40px;
 	right: 40px;
 	outline: 10px;
-	border: 3px solid lightslategray;
+	border: 3px solid var(--border-color);
 	border-radius: 60px;
+	background-color: var(--bg-secondary);
 	visibility: hidden;
 }
 
@@ -18,26 +19,28 @@
 	right: 98px;
 	width: 40px;
 	height: 40px;
-	background-color: lightslategray;
+	background-color: var(--border-color);
 	outline: 0;
 	border: 0;
 	border-radius: 50px;
 	transition: 0.2s;
+	color: var(--text-primary);
 }
 .themeBtn:hover
 {
-	background-color: #99AABB;
+	background-color: var(--hover-color);
+	color: white;
 }
 
 .themeBtn:active
 {
-	background-color: #556677;
+	background-color: var(--bg-tertiary);
 }
 
 .themeDot
 {
 	position: fixed;
-	background-color: #7788997F;
+	background-color: var(--text-secondary);
 	border-radius: 2px;
 	width: 10px;
 	height: 10px;

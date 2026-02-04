@@ -4,10 +4,10 @@
 	width: 250px;
 	margin: 100px 0px 0px calc(10% - 50px);
 	padding-top: 10px;
-	border: 2px solid lightslategray;
+	border: 2px solid var(--border-color);
 	border-radius: 10px;
 	position: absolute;
-	background-color: var(--primary);
+	background-color: var(--bg-secondary);
 	visibility: hidden;
 }
 
@@ -20,7 +20,7 @@
     left: calc(50% - 1px);
     transform: rotate(45deg);
     height: 6px;
-    background: white;
+    background: var(--text-primary);
 }
 
 .arrow::before,
@@ -71,7 +71,7 @@
 	overflow-y: auto;
 	margin: 10px 0px 0px 0px;
 	border-radius: 6px;
-	scrollbar-color: lightslategray var(--primary);
+	scrollbar-color: var(--border-color) var(--bg-secondary);
 }
 
 input[type='text']
@@ -81,11 +81,20 @@ input[type='text']
 	width: 176px;
 	border: 0;
 	outline: 0;
+	background-color: var(--bg-tertiary);
+	color: var(--text-primary);
+	padding: 5px 8px;
+	border-radius: 4px;
 }
 input[type='text']:focus
 {
 	border: 0;
 	outline: 0;
+	background-color: var(--bg-primary);
+}
+input[type='text']::placeholder
+{
+	color: var(--text-secondary);
 }
 
 ul[class="searchbar-child"]
@@ -97,12 +106,13 @@ ul[class="searchbar-child"]
 li[class="searchbar-child"]
 {
 	padding: 8px 10px;
-	background-color: var(--primary);
-	border-top: 1px solid lightslategray;
+	background-color: var(--bg-tertiary);
+	border-top: 1px solid var(--border-color);
+	color: var(--text-primary);
 }
 li[class="searchbar-child"]:hover
 {
-	background-color: cornflowerblue;
+	background-color: var(--hover-color);
 	color: white;
 }
 
