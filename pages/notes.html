@@ -1,0 +1,121 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Kathy Engine - Note Functions</title>
+		<link rel="stylesheet" href="../css/main.css">
+		<link rel="stylesheet" href="../css/header.css">
+		<link rel="stylesheet" href="../css/search.css">
+		<link rel="stylesheet" href="../css/theme.css">
+		<link rel="icon" href="../assets/kathyicon.png" type="image/x-icon">
+	</head>
+	<body>
+		<div class="sidebar"></div>
+		<div class="themeBox" onclick="switchTheme()">
+			<div class="themeDot"></div>
+			<div class="themeDot" style="margin-left: 70px"></div>
+			<button class="themeBtn" id="themeSelector"></button>
+		</div>
+		<script src="../js/selector.js"></script>
+		<script>createSidebarContent();</script>
+		<script src="../js/searchbar.js"></script>
+		<script src="../js/theme.js"></script>
+		<div class="headerbox">
+			<div class="header">
+				<a href="../index.html">
+					<img width="64" src="../assets/kathyicon.png" alt="Kathy Engine Logo" draggable="false">
+					<div class="headertext">Kathy Engine - Lua Script API</div>
+				</a>
+			</div>
+		</div>
+		<div class="infobox">
+			<h1>Note Functions <span class="kathynew-badge">Kathy Engine</span></h1>
+			<p><b>Convenience wrappers for querying and modifying individual notes — no more reflection headaches!</b></p>
+			<p>All functions here are <b>KathyEngine-exclusive</b> and not present in the original PsychEngine 1.0.4.
+			<br>They provide a cleaner alternative to <a href="reflection.html#getPropertyFromGroup">getPropertyFromGroup</a> / <a href="reflection.html#setPropertyFromGroup">setPropertyFromGroup</a>.</p>
+			<hr>
+
+			<h2 id="getNoteCount">getNoteCount</h2>
+			<p class="methodbox">Usage: <b>getNoteCount()</b>:Int</p>
+			<p>Returns the number of alive notes currently in the chart (notes that haven't been destroyed/killed yet).</p>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">debugPrint('Alive notes: ' .. getNoteCount())</span></li>
+			</ul>
+			<hr>
+
+			<h2 id="getTotalNoteCount">getTotalNoteCount</h2>
+			<p class="methodbox">Usage: <b>getTotalNoteCount()</b>:Int</p>
+			<p>Returns the total number of notes pre-loaded in the chart (including already-destroyed ones). This is the raw array length.</p>
+			<hr>
+
+			<h2 id="getAliveNotes">getAliveNotes</h2>
+			<p class="methodbox">Usage: <b>getAliveNotes()</b>:Array&lt;Int&gt;</p>
+			<p>Returns a table containing the indices of all alive notes. Handy for iterating over notes without worrying about destroyed array holes.</p>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">for i, idx in ipairs(getAliveNotes()) do debugPrint('Note at index: ' .. idx) end</span></li>
+			</ul>
+			<hr>
+
+			<h2 id="getNoteProperty">getNoteProperty</h2>
+			<p class="methodbox">getNoteProperty(<span class="variablemarkup">index</span>:Int, <span class="variablemarkup">property</span>:String):Dynamic</p>
+			<p>Reads a specific property from a note at the given index. Supports direct access for common properties and falls back to reflection for anything else.</p>
+			<ul>
+				<li><b><span class="variablemarkup">index</span></b> - Index of the note in the notes array.</li>
+				<li><b><span class="variablemarkup">property</span></b> - Property name to read (see list below).</li>
+			</ul>
+			<p><b>Supported properties:</b> noteData, strumTime, noteType, isSustainNote, mustPress, gfNote, missed, wasGoodHit, canBeHit, tooLate, ignoreNote, x, y, alpha, angle, velocityX, velocityY, hitHealth, missHealth, exists, rating</p>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">local noteAlpha = getNoteProperty(5, 'alpha')</span> - Read alpha of note at index 5.</li>
+				<li class="exampleitem"><span class="methodexample">local dir = getNoteProperty(3, 'noteData')</span> - Read direction (0=LEFT, 1=DOWN, 2=UP, 3=RIGHT) of note 3.</li>
+			</ul>
+			<hr>
+
+			<h2 id="setNoteProperty">setNoteProperty</h2>
+			<p class="methodbox">setNoteProperty(<span class="variablemarkup">index</span>:Int, <span class="variablemarkup">property</span>:String, <span class="variablemarkup">value</span>:Dynamic):Bool</p>
+			<p>Sets a specific property on a note via reflection. Returns true on success, false if the index is out of bounds.</p>
+			<ul>
+				<li><b><span class="variablemarkup">index</span></b> - Index of the note.</li>
+				<li><b><span class="variablemarkup">property</span></b> - Property name to set.</li>
+				<li><b><span class="variablemarkup">value</span></b> - New value.</li>
+			</ul>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">setNoteProperty(5, 'alpha', 0.3)</span> - Makes note 5 semi-transparent.</li>
+				<li class="exampleitem"><span class="methodexample">setNoteProperty(3, 'missed', true)</span> - Manually marks note 3 as missed.</li>
+			</ul>
+			<hr>
+
+			<h2 id="getNoteData">getNoteData</h2>
+			<p class="methodbox">getNoteData(<span class="variablemarkup">index</span>:Int):Dynamic</p>
+			<p>Returns a table with <b>all</b> common properties of the note at once. More efficient than calling getNoteProperty multiple times.</p>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">local n = getNoteData(5)
+<br>debugPrint('dir: ' .. n.noteData .. ' x: ' .. n.x .. ' alpha: ' .. n.alpha)</span></li>
+			</ul>
+			<hr>
+
+			<h2 id="destroyNote">destroyNote</h2>
+			<p class="methodbox">destroyNote(<span class="variablemarkup">index</span>:Int):Bool</p>
+			<p>Kills (destroys) the note at the given index. Returns true on success.</p>
+			<ul>
+				<li><b><span class="variablemarkup">index</span></b> - Index of the note to destroy.</li>
+			</ul>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">destroyNote(10)</span> - Removes note at index 10 from play.</li>
+			</ul>
+			<hr>
+
+			<h2 id="getNoteRating">getNoteRating</h2>
+			<p class="methodbox">getNoteRating(<span class="variablemarkup">index</span>:Int):String</p>
+			<p>Returns the judgement rating string for a note (only meaningful after the note has been judged). Possible values: 'Perfect', 'Great', 'Good', 'Bad', 'Shit', '' (empty if not yet judged).</p>
+			<ul>
+				<li><b><span class="variablemarkup">index</span></b> - Index of the note.</li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -151,6 +151,174 @@
 			<ul class="methoddiv">
 				<li class="exampleitem"><span class="methodexample">startVideo('test_video')</span> - Plays the video <span class="methodexample">mods/My-Mod/videos/test_video.mp4</span>.</li>
 			</ul>
+
+			<hr>
+			<h1 style="margin-top: 40px;">🔔 Callbacks / on* Events</h1>
+			<p style="color: var(--text-secondary);">Callbacks are special Lua/HScript functions automatically called by the engine at specific moments.
+			<br>To hook into one, just define a function with that name in your script.</p>
+			<p><b>Return <span class="haxecode">Function_Stop</span> from a stoppable callback to prevent the default engine behavior.</b></p>
+
+			<h3 style="color: var(--accent); margin-top: 30px;">Creation &amp; Lifecycle</h3>
+			<hr>
+			<h2 id="onCreate">onCreate</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onCreate()</p>
+			<p>Called when PlayState.create() begins, before all game objects are initialized.</p>
+			<h2 id="onCreatePost">onCreatePost</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onCreatePost()</p>
+			<p>Called after PlayState.create() finishes — all characters, HUD, notes and variables are ready.</p>
+
+			<h3 style="color: var(--accent); margin-top: 20px;">Countdown</h3>
+			<hr>
+			<h2 id="onStartCountdown">onStartCountdown</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onStartCountdown() → <b>can return Function_Stop</b></p>
+			<p>Fired before the countdown starts. Return Function_Stop to prevent the countdown from starting (useful for pre-song cutscenes).</p>
+			<h2 id="onCountdownStarted">onCountdownStarted</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onCountdownStarted()</p>
+			<p>Fired when the countdown actually begins playing audio/visuals.</p>
+			<h2 id="onCountdownTick">onCountdownTick</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onCountdownTick(<span class="variablemarkup">count</span>:Int)</p>
+			<p>Fired on each countdown number change (3 → 2 → 1 → GO!). <span class="kathynew">(KathyEngine: also fires on GO!)</span></p>
+			<h2 id="onEndCountdown" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">onEndCountdown <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onEndCountdown()</p>
+			<p>Fired when Ready-Set-Go finishes and the song is about to start playing. More precise than onSongStart.</p>
+
+			<h3 style="color: var(--accent); margin-top: 20px;">Song Progress</h3>
+			<hr>
+			<h2 id="onSongStart">onSongStart</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onSongStart()</p>
+			<p>Fired when the song music actually starts playing.</p>
+			<h2 id="onEndSong">onEndSong</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onEndSong() → <b>can return Function_Stop</b></p>
+			<p>Fired when the song ends (reaches the end of the chart). Return Function_Stop to prevent the default results screen.</p>
+			<h2 id="onSectionHit">onSectionHit</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onSectionHit(<span class="variablemarkup">section</span>:Int)</p>
+			<p>Fired when the song reaches a new section (song BPM changes).</p>
+
+			<h3 style="color: var(--accent); margin-top: 20px;">Pause &amp; Death</h3>
+			<hr>
+			<h2 id="onPause">onPause</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onPause() → <b>can return Function_Stop</b></p>
+			<p>Fired when the game pauses. Return Function_Stop to prevent pausing.</p>
+			<h2 id="onResume">onResume</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onResume()</p>
+			<p>Fired when the game resumes from pause.</p>
+			<h2 id="onDeath" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">onDeath <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onDeath()</p>
+			<p>Pure notification fired when health reaches 0 (before any death flow begins). Cannot be stopped — use onGameOver or onCustomGameOver for that.</p>
+			<h2 id="onGameOver">onGameOver</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onGameOver() → <b>can return Function_Stop</b></p>
+			<p>Fired when the death flow is about to start. Return Function_Stop to block the entire death (no music stop, no stunned character, no GameOverSubstate).</p>
+			<h2 id="onCustomGameOver" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">onCustomGameOver <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onCustomGameOver() → <b>can return Function_Stop</b></p>
+			<p>Fired after the default death flow has started (character stunned, music paused) but BEFORE GameOverSubstate opens.
+			<br>Return Function_Stop to prevent the default GameOverSubstate — useful for making custom death/end screens.
+			<br><b>Unlike onGameOver, the music and character are already in their death state when this fires.</b></p>
+
+			<h3 style="color: var(--accent); margin-top: 20px;">Note Judgement</h3>
+			<hr>
+			<h2 id="onSpawnNote">onSpawnNote</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onSpawnNote(<span class="variablemarkup">index</span>:Int, <span class="variablemarkup">noteType</span>:String, <span class="variablemarkup">isSustainNote</span>:Bool, <span class="variablemarkup">strumTime</span>:Float)</p>
+			<p>Fired when a note enters the play field (on-screen).</p>
+			<h2 id="goodNoteHit">goodNoteHit</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> goodNoteHit(<span class="variablemarkup">index</span>:Int, <span class="variablemarkup">noteType</span>:String, <span class="variablemarkup">isSustain</span>:Bool)</p>
+			<p>Fired when the <b>player</b> hits a note (any judgement: Perfect/Great/Good/Bad/Shit).</p>
+			<h2 id="opponentNoteHit">opponentNoteHit</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> opponentNoteHit(<span class="variablemarkup">index</span>:Int, <span class="variablemarkup">noteType</span>:String, <span class="variablemarkup">isSustain</span>:Bool)</p>
+			<p>Fired when the <b>opponent</b> hits a note.</p>
+			<h2 id="noteMiss">noteMiss</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> noteMiss(<span class="variablemarkup">index</span>:Int, <span class="variablemarkup">noteType</span>:String)</p>
+			<p>Fired when the player misses a note.</p>
+			<h2 id="ghostNoteMiss" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">ghostNoteMiss <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> ghostNoteMiss(<span class="variablemarkup">index</span>:Int)</p>
+			<p>Fired when a ghost note (past the strum line) is missed.</p>
+
+			<h3 style="color: var(--accent); margin-top: 20px;">Score</h3>
+			<hr>
+			<h2 id="preUpdateScore">preUpdateScore</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> preUpdateScore(<span class="variablemarkup">miss</span>:Bool) → <b>can return Function_Stop</b></p>
+			<p>Fired BEFORE the score/hit/miss counters are updated. Return Function_Stop to prevent the default score change.</p>
+			<h2 id="onUpdateScore">onUpdateScore</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onUpdateScore(<span class="variablemarkup">miss</span>:Bool)</p>
+			<p>Fired after the score/hit/miss counters are updated.</p>
+
+			<h3 style="color: var(--accent); margin-top: 20px;">Frame Updates</h3>
+			<hr>
+			<h2 id="onUpdate">onUpdate</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onUpdate(<span class="variablemarkup">elapsed</span>:Float)</p>
+			<p>Fired at the start of every frame's update phase.</p>
+			<h2 id="onUpdatePost">onUpdatePost</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onUpdatePost(<span class="variablemarkup">elapsed</span>:Float)</p>
+			<p>Fired at the end of every frame's update phase.</p>
+			<h2 id="onDraw" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">onDraw <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onDraw()</p>
+			<p>Fired at the start of every frame's draw phase (before super.draw()). Use for custom rendering overlays.</p>
+			<h2 id="onDrawPost" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">onDrawPost <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onDrawPost()</p>
+			<p>Fired at the end of every frame's draw phase (after super.draw()). Last chance to draw things on top.</p>
+			<h2 id="onBeatHit">onBeatHit</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onBeatHit()</p>
+			<p>Fired on every beat (BPM-aligned, once per beat).</p>
+			<h2 id="onStepHit">onStepHit</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onStepHit()</p>
+			<p>Fired on every step (half-beat, twice per beat).</p>
+			<h2 id="onTweenCompleted">onTweenCompleted</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onTweenCompleted(<span class="variablemarkup">tag</span>:String)</p>
+			<p>Fired when a Tween finishes (or is cancelled via cancelTween).</p>
+			<h2 id="onTimerCompleted">onTimerCompleted</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onTimerCompleted(<span class="variablemarkup">tag</span>:String, <span class="variablemarkup">loopsLeft</span>:Int)</p>
+			<p>Fired when a Timer completes one loop.</p>
+			<h2 id="onSoundFinished">onSoundFinished</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onSoundFinished(<span class="variablemarkup">tag</span>:String)</p>
+			<p>Fired when a sound finishes playing.</p>
+
+			<h3 style="color: var(--accent); margin-top: 20px;">Custom Events</h3>
+			<hr>
+			<h2 id="onEvent">onEvent</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onEvent(<span class="variablemarkup">name</span>:String, <span class="variablemarkup">value1</span>:String, <span class="variablemarkup">value2</span>:String, <span class="variablemarkup">value3</span>:String, <span class="variablemarkup">value4</span>:String) → <b>can return Function_Stop</b></p>
+			<p>Fired when the chart triggers a custom event. Return Function_Stop to prevent PsychEngine's default event handlers from running.</p>
+			<h2 id="eventEarlyTrigger">eventEarlyTrigger</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> eventEarlyTrigger(<span class="variablemarkup">eventName</span>:String, <span class="variablemarkup">strumTime</span>:Float, <span class="variablemarkup">value1</span>:String, <span class="variablemarkup">value2</span>:String, <span class="variablemarkup">value3</span>:String, <span class="variablemarkup">value4</span>:String) → <b>can return Function_Stop</b></p>
+			<p>Fired before the event actually triggers (pre-trigger hook).</p>
+			<h2 id="onEventPushed">onEventPushed</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onEventPushed()</p>
+			<p>Fired when an event is added to the queue.</p>
+
+			<h3 style="color: var(--accent); margin-top: 20px;">Input</h3>
+			<hr>
+			<h2 id="onKeyPress">onKeyPress</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onKeyPress(<span class="variablemarkup">key</span>:String) → <b>can return Function_Stop</b></p>
+			<p>Fired when a key is just pressed (same as keyJustPressed). Return Function_Stop to prevent engine default handling.</p>
+			<h2 id="onKeyRelease">onKeyRelease</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onKeyRelease(<span class="variablemarkup">key</span>:String) → <b>can return Function_Stop</b></p>
+			<p>Fired when a key is released.</p>
+			<h2 id="onRawKeyPress" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">onRawKeyPress <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onRawKeyPress(<span class="variablemarkup">key</span>:String) → <b>can return Function_Stop</b></p>
+			<p>Fired on raw key press — unlike onKeyPress, this fires even when the game is paused.</p>
+			<h2 id="onRawKeyRelease" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">onRawKeyRelease <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onRawKeyRelease(<span class="variablemarkup">key</span>:String) → <b>can return Function_Stop</b></p>
+			<p>Fired on raw key release — same pause-ignoring behavior as onRawKeyPress.</p>
+			<h2 id="onMouseClick">onMouseClick</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onMouseClick(<span class="variablemarkup">button</span>:String) → <b>can return Function_Stop</b></p>
+			<p>Fired when the mouse is clicked. Button: 'left', 'right', 'middle', 'x1', 'x2'.</p>
+			<h2 id="onButtonPress" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">onButtonPress <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onButtonPress(<span class="variablemarkup">button</span>:String) → <b>can return Function_Stop</b></p>
+			<p>Fired when a gamepad button is pressed.</p>
+			<h2 id="onButtonRelease" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">onButtonRelease <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onButtonRelease(<span class="variablemarkup">button</span>:String) → <b>can return Function_Stop</b></p>
+			<p>Fired when a gamepad button is released.</p>
+
+			<h3 style="color: var(--accent); margin-top: 20px;">Custom Substate</h3>
+			<hr>
+			<h2 id="onCustomSubstateCreate">onCustomSubstateCreate</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onCustomSubstateCreate(<span class="variablemarkup">tag</span>:String)</p>
+			<p>Fired when a custom substate is created.</p>
+			<h2 id="onCustomSubstateUpdate">onCustomSubstateUpdate</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onCustomSubstateUpdate(<span class="variablemarkup">tag</span>:String)</p>
+			<p>Fired every frame while a custom substate is active.</p>
+			<h2 id="onCustomSubstateDestroy">onCustomSubstateDestroy</h2>
+			<p class="methodbox"><span class="variablemarkup">function</span> onCustomSubstateDestroy(<span class="variablemarkup">tag</span>:String)</p>
+			<p>Fired when a custom substate is destroyed.</p>
+
 		</div>
 	</body>
 </html>

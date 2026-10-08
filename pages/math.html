@@ -1,0 +1,116 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Kathy Engine - Math Functions</title>
+		<link rel="stylesheet" href="../css/main.css">
+		<link rel="stylesheet" href="../css/header.css">
+		<link rel="stylesheet" href="../css/search.css">
+		<link rel="stylesheet" href="../css/theme.css">
+		<link rel="icon" href="../assets/kathyicon.png" type="image/x-icon">
+	</head>
+	<body>
+		<div class="sidebar"></div>
+		<div class="themeBox" onclick="switchTheme()">
+			<div class="themeDot"></div>
+			<div class="themeDot" style="margin-left: 70px"></div>
+			<button class="themeBtn" id="themeSelector"></button>
+		</div>
+		<script src="../js/selector.js"></script>
+		<script>createSidebarContent();</script>
+		<script src="../js/searchbar.js"></script>
+		<script src="../js/theme.js"></script>
+		<div class="headerbox">
+			<div class="header">
+				<a href="../index.html">
+					<img width="64" src="../assets/kathyicon.png" alt="Kathy Engine Logo" draggable="false">
+					<div class="headertext">Kathy Engine - Lua Script API</div>
+				</a>
+			</div>
+		</div>
+		<div class="infobox">
+			<h1>Math / Utility Functions <span class="kathynew-badge">Kathy Engine</span></h1>
+			<p><b>Common math shortcuts and color helpers that every modder needs — no more hacking through reflection!</b></p>
+			<p>All functions here are <b>KathyEngine-exclusive</b>.</p>
+			<hr>
+
+			<h2 id="distance">distance</h2>
+			<p class="methodbox">distance(<span class="variablemarkup">a</span>:Dynamic, <span class="variablemarkup">b</span>:Dynamic, <span class="isoptional">?</span><span class="variablemarkup">c</span>:Dynamic = null, <span class="isoptional">?</span><span class="variablemarkup">d</span>:Dynamic = null):Float</p>
+			<p>Calculates the Euclidean distance between two points. Two call modes:</p>
+			<ul>
+				<li><b>Two args:</b> <span class="methodexample">distance(obj1, obj2)</span> — computes distance between the midpoints of two FlxObjects (works with boyfriend, dad, gf, or any LuaSprite tag).</li>
+				<li><b>Four args:</b> <span class="methodexample">distance(x1, y1, x2, y2)</span> — computes distance between two raw coordinates.</li>
+			</ul>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">local d = distance(boyfriend, dad)</span> - Distance between BF and opponent.</li>
+				<li class="exampleitem"><span class="methodexample">local d = distance(100, 100, 300, 400)</span> - Distance between two raw coords (≈360.5).</li>
+			</ul>
+			<hr>
+
+			<h2 id="angleBetween">angleBetween</h2>
+			<p class="methodbox">angleBetween(<span class="variablemarkup">a</span>:Dynamic, <span class="variablemarkup">b</span>:Dynamic, <span class="isoptional">?</span><span class="variablemarkup">c</span>:Dynamic = null, <span class="isoptional">?</span><span class="variablemarkup">d</span>:Dynamic = null):Float</p>
+			<p>Returns the angle (in degrees) between two points. Same two-call modes as <a href="#distance">distance</a>.</p>
+			<p>Result is in degrees, ranging from -180 to 180 (atan2 output, not clamped to 0-360).</p>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">local a = angleBetween(boyfriend, dad)</span> - Angle from BF to opponent.</li>
+				<li class="exampleitem"><span class="methodexample">local a = angleBetween(0, 0, 100, 100)</span> - Returns 45 (degrees).</li>
+			</ul>
+			<hr>
+
+			<h2 id="lerp">lerp</h2>
+			<p class="methodbox">lerp(<span class="variablemarkup">a</span>:Float, <span class="variablemarkup">b</span>:Float, <span class="variablemarkup">t</span>:Float):Float</p>
+			<p>Linear interpolation between two values. t=0 returns a, t=1 returns b, t=0.5 returns the midpoint.</p>
+			<ul>
+				<li><b><span class="variablemarkup">a</span></b> - Start value.</li>
+				<li><b><span class="variablemarkup">b</span></b> - End value.</li>
+				<li><b><span class="variablemarkup">t</span></b> - Interpolation factor (usually 0..1, but values outside work for extrapolation).</li>
+			</ul>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">lerp(0, 100, 0.5)</span> - Returns 50.</li>
+				<li class="exampleitem"><span class="methodexample">lerp(0, 100, 1.5)</span> - Returns 150 (extrapolation).</li>
+			</ul>
+			<hr>
+
+			<h2 id="clamp">clamp</h2>
+			<p class="methodbox">clamp(<span class="variablemarkup">v</span>:Float, <span class="variablemarkup">min</span>:Float, <span class="variablemarkup">max</span>:Float):Float</p>
+			<p>Clamps a value to the range [min, max]. If v is below min, returns min; if above max, returns max.</p>
+			<ul>
+				<li><b><span class="variablemarkup">v</span></b> - Value to clamp.</li>
+				<li><b><span class="variablemarkup">min</span></b> - Minimum allowed value.</li>
+				<li><b><span class="variablemarkup">max</span></b> - Maximum allowed value.</li>
+			</ul>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">clamp(-5, 0, 10)</span> - Returns 0.</li>
+				<li class="exampleitem"><span class="methodexample">clamp(15, 0, 10)</span> - Returns 10.</li>
+				<li class="exampleitem"><span class="methodexample">clamp(5, 0, 10)</span> - Returns 5 (unchanged).</li>
+			</ul>
+			<hr>
+
+			<h2 id="makeFlxPoint">makeFlxPoint</h2>
+			<p class="methodbox">makeFlxPoint(<span class="isoptional">?</span><span class="variablemarkup">x</span>:Float = 0, <span class="isoptional">?</span><span class="variablemarkup">y</span>:Float = 0):Point</p>
+			<p>Creates a new <a href="https://api.openfl.org/openfl/geom/Point.html">openfl.geom.Point</a> object. Useful for APIs that require a Point instead of separate x/y values.</p>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">local p = makeFlxPoint(100, 200)</span> - Creates point (100, 200).</li>
+			</ul>
+			<hr>
+
+			<h2 id="hueShift">hueShift</h2>
+			<p class="methodbox">hueShift(<span class="variablemarkup">color</span>:String, <span class="variablemarkup">amount</span>:Float):String</p>
+			<p>Shifts the hue of a hex color string by a given amount (in degrees). Returns a new hex color string.</p>
+			<ul>
+				<li><b><span class="variablemarkup">color</span></b> - Hex color string, e.g. '#FF6B9D' or '#FF6B9DFF' (with alpha).</li>
+				<li><b><span class="variablemarkup">amount</span></b> - Hue shift amount in degrees. Use values from -180 to 180.</li>
+			</ul>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">hueShift('#FF6B9D', 30)</span> - Shifts hue 30 degrees warmer.</li>
+				<li class="exampleitem"><span class="methodexample">hueShift('#00FF00', -90)</span> - Green shifted 90° counter-clockwise → magenta-ish.</li>
+			</ul>
+		</div>
+	</body>
+</html>

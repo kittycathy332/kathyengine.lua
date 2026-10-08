@@ -81,6 +81,31 @@
 				<li><b><span class="variablemarkup">character</span></b> - "bf", "dad" or "gf".</li>
 				<li><b><span class="variablemarkup">value</span></b> - Value to set it to.</li>
 			</ul>
+			<hr>
+
+			<h2 id="getPlayingCharacterAnim" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">getPlayingCharacterAnim <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox">getPlayingCharacterAnim(<span class="variablemarkup">character</span>:String):String</p>
+			<p>Returns the name of the animation currently playing on the character. Empty string if none.</p>
+			<ul>
+				<li><b><span class="variablemarkup">character</span></b> - "bf"/"boyfriend", "dad"/"opponent", "gf"/"girlfriend".</li>
+			</ul>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">local anim = getPlayingCharacterAnim('boyfriend')</span> - Returns e.g. 'singLEFT' or 'idle'.</li>
+				<li class="exampleitem"><span class="methodexample">if getPlayingCharacterAnim('bf') == 'singLEFT' then debugPrint('BF is singing left!') end</span></li>
+			</ul>
+			<hr>
+
+			<h2 id="characterExists" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">characterExists <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox">characterExists(<span class="variablemarkup">name</span>:String):Bool</p>
+			<p>Checks whether a character with the given name exists in the assets or in any loaded mod folder.</p>
+			<ul>
+				<li><b><span class="variablemarkup">name</span></b> - Character name (e.g. "pico", "mom", "sister").</li>
+			</ul>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">if characterExists('pico') then debugPrint('Pico is available!') end</span></li>
+			</ul>
 		</div>
 	</body>
 </html>

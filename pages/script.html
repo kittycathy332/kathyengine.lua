@@ -286,5 +286,18 @@
 			<h2 id="close">close</h2>
 			<p class="methodbox">close():Bool</p>
 			<p>Stops this script.</p>
+			<hr>
+
+			<h2 id="getLuaCompatVersion" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">getLuaCompatVersion <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox">getLuaCompatVersion():String</p>
+			<p>Returns the PsychEngine Lua API version that the current build's Lua runtime is compatible with.
+			<br>Useful for advanced scripts that need to branch behavior between older and newer Psych Engine API versions.</p>
+			<ul>
+				<li>Return value is one of: <span class="methodexample">'1.0.4'</span> (default, full API), <span class="methodexample">'0.7.3'</span> or <span class="methodexample">'0.6.3'</span> (legacy compatibility modes).</li>
+			</ul>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">local ver = getLuaCompatVersion()<br>if ver ~= '1.0.4' then debugPrint('Running in legacy compatibility mode: ' .. ver) end</span> - Prints a notice if the engine is not in full 1.0.4 API mode.</li>
+			</ul>
 	</body>
 </html>

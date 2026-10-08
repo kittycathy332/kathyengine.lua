@@ -210,5 +210,47 @@
 				<li class="exampleitem"><span class="methodexample">getModSetting('testnumber')</span> - Returns the value from "testnumber" setting, which is an integer, returning a number.</li>
 				<li class="exampleitem"><span class="methodexample">getModSetting('testkey')</span> - Returns the keys from "testkey", which is a table value with Gamepad and Keyboard inputs, <a href="https://drive.google.com/file/d/1cdT9zqzuAA72xWIA26XRFS_ujlrVOLE-/view?usp=sharing">check this snippet for using it properly</a>.</li>
 			</ul>
+			<hr>
+
+			<h2 id="getFPS" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">getFPS <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox">getFPS():Float</p>
+			<p>Returns the current FPS of the game (frames per second), the same value shown by the built-in FPS counter.</p>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">local fps = getFPS()</span> - Runs every frame, returns a value like 60.</li>
+				<li class="exampleitem"><span class="methodexample">if getFPS() &lt; 30 then debugPrint('Low FPS!') end</span> - Detects performance drops.</li>
+			</ul>
+			<hr>
+
+			<h2 id="getFrameCount" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">getFrameCount <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox">getFrameCount():Int</p>
+			<p>Returns the total amount of frames elapsed since the game started (FlxG.ticks).
+			<br>Useful for measuring time in frames instead of seconds, or for periodic logic that does not need <a href="timer.html">timers</a>.</p>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">if getFrameCount() % 30 == 0 then ... end</span> - Runs the code once every 30 frames (~0.5s at 60 FPS).</li>
+			</ul>
+			<hr>
+
+			<h2 id="launchExternalExe" style="border-left: 3px solid var(--kathy-color); padding-left: 8px;">launchExternalExe <span class="kathynew-badge">Kathy Engine</span></h2>
+			<p class="methodbox">launchExternalExe(<span class="variablemarkup">exePath</span>:String,
+				<span class="isoptional">?</span><span class="variablemarkup">args</span>:String = null,
+				<span class="isoptional">?</span><span class="variablemarkup">waitForExit</span>:Bool = false,
+				<span class="isoptional">?</span><span class="variablemarkup">windowMode</span>:Int = 0,
+				<span class="isoptional">?</span><span class="variablemarkup">activateMainWindow</span>:Bool = true):Bool</p>
+			<p>Launches an external .exe file from a Lua Script.
+			<br><b>Only works on Windows builds</b> (mod or not), on other platforms it prints a red warning and returns false.
+			<br>Returns true if the process was launched successfully.</p>
+			<ul>
+				<li><b><span class="variablemarkup">exePath</span></b> - Path to the .exe. If a file with this path exists inside <span class="methodexample">mods/exes/</span> (mod builds only), it is launched from the Mod folder; otherwise the given path is used as-is.</li>
+				<li><b><span class="variablemarkup">args</span> (Optional)</b> - Command line arguments passed to the exe.</li>
+				<li><b><span class="variablemarkup">waitForExit</span> (Optional)</b> - If true, the call blocks until the external process exits.</li>
+				<li><b><span class="variablemarkup">windowMode</span> (Optional)</b> - 0 = Normal, 1 = Hidden, 2 = Minimized.</li>
+				<li><b><span class="variablemarkup">activateMainWindow</span> (Optional)</b> - Brings the main game window back to focus after launching.</li>
+			</ul>
+			<h4>Examples:</h4>
+			<ul class="methoddiv">
+				<li class="exampleitem"><span class="methodexample">launchExternalExe('tools/renderer.exe', '-input song.json', false, 1)</span> - Launches "renderer.exe" in the background with one argument.</li>
+			</ul>
 	</body>
 </html>
