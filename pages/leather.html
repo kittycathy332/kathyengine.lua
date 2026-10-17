@@ -1,0 +1,1664 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Kathy Engine - Leather Engine Functions</title>
+		<link rel="stylesheet" href="../css/main.css">
+		<link rel="stylesheet" href="../css/header.css">
+		<link rel="stylesheet" href="../css/search.css">
+		<link rel="stylesheet" href="../css/theme.css">
+		<link rel="icon" href="../assets/kathyicon.png" type="image/x-icon">
+		
+		<style>
+		.headerbox { background-color: #67e8f9 !important; box-shadow: 0px 2px 2px 2px rgba(34, 211, 238, 0.3); }
+		</style>
+	</head>
+
+	<body>
+		<!-- Create Search Bar and Theme Boxes-->
+		<div class="sidebar"></div>
+		<div class="themeBox" onclick="switchTheme()">
+			<div class="themeDot"></div>
+			<div class="themeDot" style="margin-left: 70px"></div>
+			<button class="themeBtn" id="themeSelector"></button>
+		</div>
+		<button class="langBox" id="langToggle" title="Switch language">中</button>
+
+		<!-- Load JavaScript-->
+		<script src="../js/selector.js"></script>
+		<script>createSidebarContent();</script>
+		<script src="../js/searchbar.js"></script>
+		<script src="../js/theme.js"></script>
+
+		<!-- Header -->
+		<div class="headerbox">
+			<div class="header">
+				<a href="../index.html">
+					<img width="64" src="../assets/kathyicon.png" alt="Kathy Engine Logo" draggable="false">
+					<div class="headertext">Kathy Engine - Lua Script API</div>
+				</a>
+			</div>
+		</div>
+
+		<!-- Page Info -->
+		<div class="infobox">
+						<div style="text-align:center; margin: 26px 0 14px 0;">
+				<p style="font-weight:bold; font-size:1.15em; margin:0;" data-i18n="page_tribute">Tribute to the FIRST "true soft moddable" engine: Leather Engine</p>
+			</div>
+<h1 data-i18n="page_h1">Leather Engine Functions</h1>
+			<p><b data-i18n="page_intro_1">Leather Engine (LE) mod script compatibility layer API.</b>
+			<br><span data-i18n="page_intro_2">Registered by KathyEngine LeatherLuaScript.hx (384 functions in total); active when the chart format is LEATHER / LEATHER LTS and leatherScriptCompat is not off.</span>
+			<br><span data-i18n="page_intro_3">Sources: Official 0.5.0 ModchartUtilities.hx (212) and LTS 1.1.9 LuaScript.hx (373).</span>
+			<br><span data-i18n="page_intro_4">Version semantics: LTS-only functions are removed in official mode (calling them errors with nil); official-only exist only in Official; both means available in both. MODCHARTING_TOOLS stubs only log a message (Kathy has no such system).</span></p>
+			<p style="color: var(--text-secondary); font-size: 0.9em;" data-i18n="page_note">Kathy adaptations: no standalone strumLine object (setStrumlineX/Y move members directly); note speed field is multSpeed; flixel 5.9 has no FlxTween.id (tweens registered with auto-increment keys); FlxSound loop field is looped; BaseStage.add is package-private (stage objects attach to PlayState); SwagSong has no character position fields (getOriginalCharX/Y return 0).</p>
+			
+
+			<div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 10px;">
+				<img width="100" src="../assets/kathylogo.svg" alt="Kathy Engine Logo" draggable="false">
+				<span style="font-size: 40px; font-weight: bold; color: var(--text-primary);">+</span>
+				<img width="200" src="../assets/leatherlogo.png" alt="Leather Engine Logo" draggable="false">
+			</div>
+
+			
+						<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_output">Output / Debug</h2>
+<hr>
+<h3 id="trace">trace</h3>
+<p class="methodbox">trace(str:Dynamic, printType:String = "LOG")</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="print">print</h3>
+<p class="methodbox">print(str:Dynamic, printType:String = "LOG")</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_camera">Camera / HUD</h2>
+<hr>
+<h3 id="flashCamera">flashCamera</h3>
+<p class="methodbox">flashCamera(camera:String = "", color:String = "#FFFFFF", time:Float = 1, force:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="fadeCamera">fadeCamera</h3>
+<p class="methodbox">fadeCamera(camera:String = "", color:String = "#FFFFFF", time:Float = 1, fadeIn:Bool = false, force:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="stopFlash">stopFlash</h3>
+<p class="methodbox">stopFlash(camera:String = "", color:String = "#FFFFFF", time:Float = 1, force:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCamZoom">setCamZoom</h3>
+<p class="methodbox">setCamZoom(zoomAmount:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setHudZoom">setHudZoom</h3>
+<p class="methodbox">setHudZoom(zoomAmount:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCamZoom">getCamZoom</h3>
+<p class="methodbox">getCamZoom()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCamPosition">setCamPosition</h3>
+<p class="methodbox">setCamPosition(x:Int, y:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setObjectCamera">setObjectCamera</h3>
+<p class="methodbox">setObjectCamera(id:String, camera:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCamera">setCamera</h3>
+<p class="methodbox">setCamera(id:String, camera:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCameraX">getCameraX</h3>
+<p class="methodbox">getCameraX()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCameraY">getCameraY</h3>
+<p class="methodbox">getCameraY()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCameraScrollX">getCameraScrollX</h3>
+<p class="methodbox">getCameraScrollX(camStr:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCameraScrollY">getCameraScrollY</h3>
+<p class="methodbox">getCameraScrollY(camStr:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getHudX">getHudX</h3>
+<p class="methodbox">getHudX()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getHudY">getHudY</h3>
+<p class="methodbox">getHudY()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getHudZoom">getHudZoom</h3>
+<p class="methodbox">getHudZoom()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setHudAngle">setHudAngle</h3>
+<p class="methodbox">setHudAngle(angle:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setHudPosition">setHudPosition</h3>
+<p class="methodbox">setHudPosition(x:Int, y:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setNoteCameras">setNoteCameras</h3>
+<p class="methodbox">setNoteCameras(camStr:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setObjectCameras">setObjectCameras</h3>
+<p class="methodbox">setObjectCameras(id:String, camStr:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="makeCamera">makeCamera</h3>
+<p class="methodbox">makeCamera(camStr:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCameraCustomShader">setCameraCustomShader</h3>
+<p class="methodbox">setCameraCustomShader(id:String, camera:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="pushShaderToCamera">pushShaderToCamera</h3>
+<p class="methodbox">pushShaderToCamera(id:String, camera:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCameraNoCustomShader">setCameraNoCustomShader</h3>
+<p class="methodbox">setCameraNoCustomShader(camera:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCameraShader">setCameraShader</h3>
+<p class="methodbox">setCameraShader(camera:String, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="removeCameraShader">removeCameraShader</h3>
+<p class="methodbox">removeCameraShader(camStr:String, shaderName:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_sprite">Sprite / Object Creation</h2>
+<hr>
+<h3 id="makeGraphic">makeGraphic</h3>
+<p class="methodbox">makeGraphic(id:String, width:Int, height:Int, color:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="makeGraphicRGB">makeGraphicRGB</h3>
+<p class="methodbox">makeGraphicRGB(id:String, width:Int, height:Int, color:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="makeSprite">makeSprite</h3>
+<p class="methodbox">makeSprite(id:String, filename:String, x:Float, y:Float, size:Float = 1, ?sizeY:Float = null)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="makeAnimatedSprite">makeAnimatedSprite</h3>
+<p class="methodbox">makeAnimatedSprite(id:String, filename:String, x:Float, y:Float, size:Float = 1, ?sizeY:Float = null)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="makeSpriteCopy">makeSpriteCopy</h3>
+<p class="methodbox">makeSpriteCopy(id:String, targetID:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="addActorAnimation">addActorAnimation</h3>
+<p class="methodbox">addActorAnimation(id:String, prefix:String, anim:String, fps:Int = 30, looped:Bool = true)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="makeText">makeText</h3>
+<p class="methodbox">makeText(id:String, text:String, x:Float, y:Float, size:Int = 32, font:String = "vcr.ttf", fieldWidth:Float = 0)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="makeStageSprite">makeStageSprite</h3>
+<p class="methodbox">makeStageSprite(id:String, filename:String, x:Float, y:Float, size:Float = 1, ?sizeY:Float = null)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="makeStageAnimatedSprite">makeStageAnimatedSprite</h3>
+<p class="methodbox">makeStageAnimatedSprite(id:String, filename:String, x:Float, y:Float, size:Float = 1, ?sizeY:Float = null)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="makeStageDancingSprite">makeStageDancingSprite</h3>
+<p class="methodbox">makeStageDancingSprite(id:String, filename:String, x:Float, y:Float, size:Float = 1, ?oneDanceAnimation:Bool, ?antialiasing:Bool, ?sizeY:Float = null)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="newSprite">newSprite</h3>
+<p class="methodbox">newSprite(id:String, filename:String, x:Float, y:Float, size:Float = 1, ?sizeY:Float = null)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="newSpriteCopy">newSpriteCopy</h3>
+<p class="methodbox">newSpriteCopy(id:String, targetID:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="newAnimatedSprite">newAnimatedSprite</h3>
+<p class="methodbox">newAnimatedSprite(id:String, filename:String, x:Float, y:Float, size:Float = 1, ?sizeY:Float = null)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="makeDancingSprite">makeDancingSprite</h3>
+<p class="methodbox">makeDancingSprite(id:String, filename:String, x:Float, y:Float, size:Float = 1, ?oneDanceAnimation:Bool, ?antialiasing:Bool, ?sizeY:Float = null)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="newDancingSprite">newDancingSprite</h3>
+<p class="methodbox">newDancingSprite(id:String, filename:String, x:Float, y:Float, size:Float = 1, ?oneDanceAnimation:Bool, ?antialiasing:Bool, ?sizeY:Float = null)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="destroySprite">destroySprite</h3>
+<p class="methodbox">destroySprite(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="addActorAnimationIndices">addActorAnimationIndices</h3>
+<p class="methodbox">addActorAnimationIndices(id:String, prefix:String, indiceString:String, anim:String, fps:Int = 30, looped:Bool = true)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_actor">Actor Control</h2>
+<hr>
+<h3 id="setActorX">setActorX</h3>
+<p class="methodbox">setActorX(x:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorY">setActorY</h3>
+<p class="methodbox">setActorY(y:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorPos">setActorPos</h3>
+<p class="methodbox">setActorPos(x:Float, y:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorAngle">setActorAngle</h3>
+<p class="methodbox">setActorAngle(angle:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorScale">setActorScale</h3>
+<p class="methodbox">setActorScale(scale:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorScaleXY">setActorScaleXY</h3>
+<p class="methodbox">setActorScaleXY(scaleX:Float, scaleY:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorAlpha">setActorAlpha</h3>
+<p class="methodbox">setActorAlpha(alpha:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorVisible">setActorVisible</h3>
+<p class="methodbox">setActorVisible(visible:Bool, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorScroll">setActorScroll</h3>
+<p class="methodbox">setActorScroll(x:Float, y:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorOriginX">setActorOriginX</h3>
+<p class="methodbox">setActorOriginX(x:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorOriginY">setActorOriginY</h3>
+<p class="methodbox">setActorOriginY(x:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorVelocityX">setActorVelocityX</h3>
+<p class="methodbox">setActorVelocityX(x:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorVelocityY">setActorVelocityY</h3>
+<p class="methodbox">setActorVelocityY(y:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorAccelerationX">setActorAccelerationX</h3>
+<p class="methodbox">setActorAccelerationX(x:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorAccelerationY">setActorAccelerationY</h3>
+<p class="methodbox">setActorAccelerationY(y:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorColor">setActorColor</h3>
+<p class="methodbox">setActorColor(id:String, r:Int, g:Int, b:Int, alpha:Int = 255)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorColorRGB">setActorColorRGB</h3>
+<p class="methodbox">setActorColorRGB(id:String, color:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorText">setActorText</h3>
+<p class="methodbox">setActorText(id:String, text:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorFont">setActorFont</h3>
+<p class="methodbox">setActorFont(id:String, font:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorAlignment">setActorAlignment</h3>
+<p class="methodbox">setActorAlignment(id:String, align:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorTextColor">setActorTextColor</h3>
+<p class="methodbox">setActorTextColor(id:String, color:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorOutlineColor">setActorOutlineColor</h3>
+<p class="methodbox">setActorOutlineColor(id:String, color:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorModAngle">setActorModAngle</h3>
+<p class="methodbox">setActorModAngle(angle:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorAntialiasing">setActorAntialiasing</h3>
+<p class="methodbox">setActorAntialiasing(antialiasing:Bool, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorDragX">setActorDragX</h3>
+<p class="methodbox">setActorDragX(x:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorDragY">setActorDragY</h3>
+<p class="methodbox">setActorDragY(y:Float, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorFlipX">setActorFlipX</h3>
+<p class="methodbox">setActorFlipX(flip:Bool, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorFlipY">setActorFlipY</h3>
+<p class="methodbox">setActorFlipY(flip:Bool, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getActorFlipX">getActorFlipX</h3>
+<p class="methodbox">getActorFlipX(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getActorFlipY">getActorFlipY</h3>
+<p class="methodbox">getActorFlipY(flip:Bool, id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getActorX">getActorX</h3>
+<p class="methodbox">getActorX(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getActorY">getActorY</h3>
+<p class="methodbox">getActorY(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getActorAlpha">getActorAlpha</h3>
+<p class="methodbox">getActorAlpha(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getActorAngle">getActorAngle</h3>
+<p class="methodbox">getActorAngle(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getActorWidth">getActorWidth</h3>
+<p class="methodbox">getActorWidth(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getActorHeight">getActorHeight</h3>
+<p class="methodbox">getActorHeight(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getActorLayer">getActorLayer</h3>
+<p class="methodbox">getActorLayer(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorLayer">setActorLayer</h3>
+<p class="methodbox">setActorLayer(id:String, layer:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getIsColliding">getIsColliding</h3>
+<p class="methodbox">getIsColliding(sprite1Name:String, sprite2Name:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorProperty">setActorProperty</h3>
+<p class="methodbox">setActorProperty(id:String, prop:String, value:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="actorScreenCenter">actorScreenCenter</h3>
+<p class="methodbox">actorScreenCenter(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActor3DShader">setActor3DShader</h3>
+<p class="methodbox">setActor3DShader(id:String, ?speed:Float = 3, ?frequency:Float = 10, ?amplitude:Float = 0.25)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorNoShader">setActorNoShader</h3>
+<p class="methodbox">setActorNoShader(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorCustomShader">setActorCustomShader</h3>
+<p class="methodbox">setActorCustomShader(id:String, actor:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorNoCustomShader">setActorNoCustomShader</h3>
+<p class="methodbox">setActorNoCustomShader(actor:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorShader">setActorShader</h3>
+<p class="methodbox">setActorShader(actorStr:String, shaderName:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_text">Text</h2>
+<hr>
+<h3 id="newText">newText</h3>
+<p class="methodbox">newText(id:String, text:String, x:Float, y:Float, size:Int = 32, font:String = "vcr.ttf", fieldWidth:Float = 0)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setTextBorderStyle">setTextBorderStyle</h3>
+<p class="methodbox">setTextBorderStyle(id:String, text:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_stage">Stage</h2>
+<hr>
+<h3 id="addStage">addStage</h3>
+<p class="methodbox">addStage(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="removeStage">removeStage</h3>
+<p class="methodbox">removeStage(id:String, splice:Bool = true)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="insertStage">insertStage</h3>
+<p class="methodbox">insertStage(id:String, position:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenStageColorSwap">tweenStageColorSwap</h3>
+<p class="methodbox">tweenStageColorSwap(prop:String, value:Dynamic, time:Float, easeStr:String = "linear")</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setStageColorSwap">setStageColorSwap</h3>
+<p class="methodbox">setStageColorSwap(prop:String, value:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_character">Character</h2>
+<hr>
+<h3 id="playCharAnim">playCharAnim</h3>
+<p class="methodbox">playCharAnim(id:String, anim:String, force:Bool = false, reverse:Bool = false, frame:Int = 0)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="playActorAnimation">playActorAnimation</h3>
+<p class="methodbox">playActorAnimation(id:String, anim:String, force:Bool = false, reverse:Bool = false, frame:Int = 0)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="playAnimation">playAnimation</h3>
+<p class="methodbox">playAnimation(id:String, anim:String, force:Bool = false, reverse:Bool = false, frame:Int = 0)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="dance">dance</h3>
+<p class="methodbox">dance(id:String, ?altAnim:String = '')</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="playActorDance">playActorDance</h3>
+<p class="methodbox">playActorDance(id:String, ?altAnim:String = '')</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="playCharacterAnimation">playCharacterAnimation</h3>
+<p class="methodbox">playCharacterAnimation(id:String, anim:String, force:Bool = false, reverse:Bool = false, frame:Int = 0)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="playCharacterDance">playCharacterDance</h3>
+<p class="methodbox">playCharacterDance(id:String, ?altAnim:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCharacterShouldDance">setCharacterShouldDance</h3>
+<p class="methodbox">setCharacterShouldDance(id:String, shouldDance:Bool = true)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCharacterPlayFullAnim">setCharacterPlayFullAnim</h3>
+<p class="methodbox">setCharacterPlayFullAnim(id:String, playFullAnim:Bool = true)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCharacterSingPrefix">setCharacterSingPrefix</h3>
+<p class="methodbox">setCharacterSingPrefix(id:String, prefix:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCharacterPreventDanceForAnim">setCharacterPreventDanceForAnim</h3>
+<p class="methodbox">setCharacterPreventDanceForAnim(id:String, preventDanceForAnim:Bool = true)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getPlayingActorAnimation">getPlayingActorAnimation</h3>
+<p class="methodbox">getPlayingActorAnimation(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getPlayingActorAnimationFrame">getPlayingActorAnimationFrame</h3>
+<p class="methodbox">getPlayingActorAnimationFrame(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getSingDirectionID">getSingDirectionID</h3>
+<p class="methodbox">getSingDirectionID(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getSingDirectionAnim">getSingDirectionAnim</h3>
+<p class="methodbox">getSingDirectionAnim(id:Int, keyCount:Int = 4)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getOriginalCharX">getOriginalCharX</h3>
+<p class="methodbox">getOriginalCharX(character:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getOriginalCharY">getOriginalCharY</h3>
+<p class="methodbox">getOriginalCharY(character:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="changeDadCharacter">changeDadCharacter</h3>
+<p class="methodbox">changeDadCharacter(character:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="changeBoyfriendCharacter">changeBoyfriendCharacter</h3>
+<p class="methodbox">changeBoyfriendCharacter(character:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCharFromEvent">getCharFromEvent</h3>
+<p class="methodbox">getCharFromEvent(eventId:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="charFromEvent">charFromEvent</h3>
+<p class="methodbox">charFromEvent(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="addCharacterToMap">addCharacterToMap</h3>
+<p class="methodbox">addCharacterToMap(m:String, character:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_notes">Notes</h2>
+<hr>
+<h3 id="getNoteProperty">getNoteProperty</h3>
+<p class="methodbox">getNoteProperty(note:Note, property:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNotes">getRenderedNotes</h3>
+<p class="methodbox">getRenderedNotes()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnNotes">getUnspawnNotes</h3>
+<p class="methodbox">getUnspawnNotes()</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="anyNotes">anyNotes</h3>
+<p class="methodbox">anyNotes()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="makeNoteCopy">makeNoteCopy</h3>
+<p class="methodbox">makeNoteCopy(id:String, noteIdx:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteX">getRenderedNoteX</h3>
+<p class="methodbox">getRenderedNoteX(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteY">getRenderedNoteY</h3>
+<p class="methodbox">getRenderedNoteY(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteType">getRenderedNoteType</h3>
+<p class="methodbox">getRenderedNoteType(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteData">getRenderedNoteData</h3>
+<p class="methodbox">getRenderedNoteData(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteArrowType">getRenderedNoteArrowType</h3>
+<p class="methodbox">getRenderedNoteArrowType(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteParentX">getRenderedNoteParentX</h3>
+<p class="methodbox">getRenderedNoteParentX(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteParentY">getRenderedNoteParentY</h3>
+<p class="methodbox">getRenderedNoteParentY(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteHit">getRenderedNoteHit</h3>
+<p class="methodbox">getRenderedNoteHit(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteCalcX">getRenderedNoteCalcX</h3>
+<p class="methodbox">getRenderedNoteCalcX(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteStrumtime">getRenderedNoteStrumtime</h3>
+<p class="methodbox">getRenderedNoteStrumtime(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteScaleX">getRenderedNoteScaleX</h3>
+<p class="methodbox">getRenderedNoteScaleX(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteScaleY">getRenderedNoteScaleY</h3>
+<p class="methodbox">getRenderedNoteScaleY(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteWidth">getRenderedNoteWidth</h3>
+<p class="methodbox">getRenderedNoteWidth(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteHeight">getRenderedNoteHeight</h3>
+<p class="methodbox">getRenderedNoteHeight(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteSustainScaleY">getRenderedNoteSustainScaleY</h3>
+<p class="methodbox">getRenderedNoteSustainScaleY(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteOffsetX">getRenderedNoteOffsetX</h3>
+<p class="methodbox">getRenderedNoteOffsetX(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteOffsetY">getRenderedNoteOffsetY</h3>
+<p class="methodbox">getRenderedNoteOffsetY(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNotePrevNoteStrumtime">getRenderedNotePrevNoteStrumtime</h3>
+<p class="methodbox">getRenderedNotePrevNoteStrumtime(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteSkewX">getRenderedNoteSkewX</h3>
+<p class="methodbox">getRenderedNoteSkewX(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteSkewY">getRenderedNoteSkewY</h3>
+<p class="methodbox">getRenderedNoteSkewY(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="isSustain">isSustain</h3>
+<p class="methodbox">isSustain(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="isParentSustain">isParentSustain</h3>
+<p class="methodbox">isParentSustain(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="isRenderedNoteSustainEnd">isRenderedNoteSustainEnd</h3>
+<p class="methodbox">isRenderedNoteSustainEnd(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteColor">getRenderedNoteColor</h3>
+<p class="methodbox">getRenderedNoteColor(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteAffectedByColor">getRenderedNoteAffectedByColor</h3>
+<p class="methodbox">getRenderedNoteAffectedByColor(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNotePos">setRenderedNotePos</h3>
+<p class="methodbox">setRenderedNotePos(x:Float, y:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNoteAlpha">setRenderedNoteAlpha</h3>
+<p class="methodbox">setRenderedNoteAlpha(alpha:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNoteScale">setRenderedNoteScale</h3>
+<p class="methodbox">setRenderedNoteScale(scale:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNoteScaleX">setRenderedNoteScaleX</h3>
+<p class="methodbox">setRenderedNoteScaleX(scale:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNoteScaleY">setRenderedNoteScaleY</h3>
+<p class="methodbox">setRenderedNoteScaleY(scale:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNoteScaleXY">setRenderedNoteScaleXY</h3>
+<p class="methodbox">setRenderedNoteScaleXY(scaleX:Int, scaleY:Int, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNoteAngle">setRenderedNoteAngle</h3>
+<p class="methodbox">setRenderedNoteAngle(angle:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNoteSkewX">setRenderedNoteSkewX</h3>
+<p class="methodbox">setRenderedNoteSkewX(skew:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNoteSkewY">setRenderedNoteSkewY</h3>
+<p class="methodbox">setRenderedNoteSkewY(skew:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNoteColor">setRenderedNoteColor</h3>
+<p class="methodbox">setRenderedNoteColor(r:Float, g:Float, b:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNoteColorForce">setRenderedNoteColorForce</h3>
+<p class="methodbox">setRenderedNoteColorForce(r:Float, g:Float, b:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setRenderedNoteSpeed">setRenderedNoteSpeed</h3>
+<p class="methodbox">setRenderedNoteSpeed(speed:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteType">getUnspawnedNoteType</h3>
+<p class="methodbox">getUnspawnedNoteType(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteNoteType">getUnspawnedNoteNoteType</h3>
+<p class="methodbox">getUnspawnedNoteNoteType(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteArrowType">getUnspawnedNoteArrowType</h3>
+<p class="methodbox">getUnspawnedNoteArrowType(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteStrumtime">getUnspawnedNoteStrumtime</h3>
+<p class="methodbox">getUnspawnedNoteStrumtime(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteMustPress">getUnspawnedNoteMustPress</h3>
+<p class="methodbox">getUnspawnedNoteMustPress(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteSustainNote">getUnspawnedNoteSustainNote</h3>
+<p class="methodbox">getUnspawnedNoteSustainNote(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteNoteData">getUnspawnedNoteNoteData</h3>
+<p class="methodbox">getUnspawnedNoteNoteData(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteData">getUnspawnedNoteData</h3>
+<p class="methodbox">getUnspawnedNoteData(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteScaleX">getUnspawnedNoteScaleX</h3>
+<p class="methodbox">getUnspawnedNoteScaleX(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteScaleY">getUnspawnedNoteScaleY</h3>
+<p class="methodbox">getUnspawnedNoteScaleY(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteSingAnimPrefix">getUnspawnedNoteSingAnimPrefix</h3>
+<p class="methodbox">getUnspawnedNoteSingAnimPrefix(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteSingAnimSuffix">getUnspawnedNoteSingAnimSuffix</h3>
+<p class="methodbox">getUnspawnedNoteSingAnimSuffix(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteColor">getUnspawnedNoteColor</h3>
+<p class="methodbox">getUnspawnedNoteColor(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnedNoteAffectedByColor">getUnspawnedNoteAffectedByColor</h3>
+<p class="methodbox">getUnspawnedNoteAffectedByColor(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setUnspawnedNoteSingAnimPrefix">setUnspawnedNoteSingAnimPrefix</h3>
+<p class="methodbox">setUnspawnedNoteSingAnimPrefix(id:Int, prefix:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setUnspawnedNoteSingAnimSuffix">setUnspawnedNoteSingAnimSuffix</h3>
+<p class="methodbox">setUnspawnedNoteSingAnimSuffix(id:Int, suffix:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setUnspawnedNoteXOffset">setUnspawnedNoteXOffset</h3>
+<p class="methodbox">setUnspawnedNoteXOffset(id:Int, offset:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setUnspawnedNoteYOffset">setUnspawnedNoteYOffset</h3>
+<p class="methodbox">setUnspawnedNoteYOffset(id:Int, offset:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setUnspawnedNoteAngle">setUnspawnedNoteAngle</h3>
+<p class="methodbox">setUnspawnedNoteAngle(id:Int, offset:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setUnspawnedNoteColor">setUnspawnedNoteColor</h3>
+<p class="methodbox">setUnspawnedNoteColor(r:Float, g:Float, b:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setUnspawnedNoteColorForce">setUnspawnedNoteColorForce</h3>
+<p class="methodbox">setUnspawnedNoteColorForce(r:Float, g:Float, b:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getRenderedNoteSpeed">getRenderedNoteSpeed</h3>
+<p class="methodbox">getRenderedNoteSpeed(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setUnspawnNoteSpeed">setUnspawnNoteSpeed</h3>
+<p class="methodbox">setUnspawnNoteSpeed(speed:Float, id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getUnspawnNoteSpeed">getUnspawnNoteSpeed</h3>
+<p class="methodbox">getUnspawnNoteSpeed(id:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_tween">Tween</h2>
+<hr>
+<h3 id="tweenActorProperty">tweenActorProperty</h3>
+<p class="methodbox">tweenActorProperty(id:String, prop:String, value:Dynamic, time:Float, easeStr:String = "linear")</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tween">tween</h3>
+<p class="methodbox">tween(obj:String, properties:Dynamic, duration:Float, ease:String, ?startDelay:Float = 0.0, ?onComplete:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenCancel">tweenCancel</h3>
+<p class="methodbox">tweenCancel(tween:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenPause">tweenPause</h3>
+<p class="methodbox">tweenPause(tween:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenResume">tweenResume</h3>
+<p class="methodbox">tweenResume(tween:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="cancelTweensOf">cancelTweensOf</h3>
+<p class="methodbox">cancelTweensOf(object:String, ?fieldPaths:Array<String>)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="pauseTweensOf">pauseTweensOf</h3>
+<p class="methodbox">pauseTweensOf(object:String, ?fieldPaths:Array<String>)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="resumeTweensOf">resumeTweensOf</h3>
+<p class="methodbox">resumeTweensOf(object:String, ?fieldPaths:Array<String>)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenCameraPos">tweenCameraPos</h3>
+<p class="methodbox">tweenCameraPos(toX:Int, toY:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenCameraAngle">tweenCameraAngle</h3>
+<p class="methodbox">tweenCameraAngle(toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenCameraZoom">tweenCameraZoom</h3>
+<p class="methodbox">tweenCameraZoom(toZoom:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenHudPos">tweenHudPos</h3>
+<p class="methodbox">tweenHudPos(toX:Int, toY:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenHudAngle">tweenHudAngle</h3>
+<p class="methodbox">tweenHudAngle(toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenHudZoom">tweenHudZoom</h3>
+<p class="methodbox">tweenHudZoom(toZoom:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenCameraPosOut">tweenCameraPosOut</h3>
+<p class="methodbox">tweenCameraPosOut(toX:Int, toY:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenCameraAngleOut">tweenCameraAngleOut</h3>
+<p class="methodbox">tweenCameraAngleOut(toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenCameraZoomOut">tweenCameraZoomOut</h3>
+<p class="methodbox">tweenCameraZoomOut(toZoom:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenHudPosOut">tweenHudPosOut</h3>
+<p class="methodbox">tweenHudPosOut(toX:Int, toY:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenHudAngleOut">tweenHudAngleOut</h3>
+<p class="methodbox">tweenHudAngleOut(toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenHudZoomOut">tweenHudZoomOut</h3>
+<p class="methodbox">tweenHudZoomOut(toZoom:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenCameraPosIn">tweenCameraPosIn</h3>
+<p class="methodbox">tweenCameraPosIn(toX:Int, toY:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenCameraAngleIn">tweenCameraAngleIn</h3>
+<p class="methodbox">tweenCameraAngleIn(toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenCameraZoomIn">tweenCameraZoomIn</h3>
+<p class="methodbox">tweenCameraZoomIn(toZoom:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenHudPosIn">tweenHudPosIn</h3>
+<p class="methodbox">tweenHudPosIn(toX:Int, toY:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenHudAngleIn">tweenHudAngleIn</h3>
+<p class="methodbox">tweenHudAngleIn(toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenHudZoomIn">tweenHudZoomIn</h3>
+<p class="methodbox">tweenHudZoomIn(toZoom:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenPos">tweenPos</h3>
+<p class="methodbox">tweenPos(id:String, toX:Int, toY:Int, time:Float, ?onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenPosXAngle">tweenPosXAngle</h3>
+<p class="methodbox">tweenPosXAngle(id:String, toX:Int, toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenPosYAngle">tweenPosYAngle</h3>
+<p class="methodbox">tweenPosYAngle(id:String, toY:Int, toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenAngle">tweenAngle</h3>
+<p class="methodbox">tweenAngle(id:String, toAngle:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenPosOut">tweenPosOut</h3>
+<p class="methodbox">tweenPosOut(id:String, toX:Int, toY:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenPosXAngleOut">tweenPosXAngleOut</h3>
+<p class="methodbox">tweenPosXAngleOut(id:String, toX:Int, toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenPosYAngleOut">tweenPosYAngleOut</h3>
+<p class="methodbox">tweenPosYAngleOut(id:String, toY:Int, toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenAngleOut">tweenAngleOut</h3>
+<p class="methodbox">tweenAngleOut(id:String, toAngle:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenPosIn">tweenPosIn</h3>
+<p class="methodbox">tweenPosIn(id:String, toX:Int, toY:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenPosXAngleIn">tweenPosXAngleIn</h3>
+<p class="methodbox">tweenPosXAngleIn(id:String, toX:Int, toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenPosYAngleIn">tweenPosYAngleIn</h3>
+<p class="methodbox">tweenPosYAngleIn(id:String, toY:Int, toAngle:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenAngleIn">tweenAngleIn</h3>
+<p class="methodbox">tweenAngleIn(id:String, toAngle:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenFadeIn">tweenFadeIn</h3>
+<p class="methodbox">tweenFadeIn(id:String, toAlpha:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenFadeOut">tweenFadeOut</h3>
+<p class="methodbox">tweenFadeOut(id:String, toAlpha:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenFadeCubeInOut">tweenFadeCubeInOut</h3>
+<p class="methodbox">tweenFadeCubeInOut(id:String, toAlpha:Float, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenActorColor">tweenActorColor</h3>
+<p class="methodbox">tweenActorColor(id:String, r1:Int, g1:Int, b1:Int, r2:Int, g2:Int, b2:Int, time:Float, onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenScaleX">tweenScaleX</h3>
+<p class="methodbox">tweenScaleX(id:String, toScale:Float, time:Float, easeStr:String = "", onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenScaleY">tweenScaleY</h3>
+<p class="methodbox">tweenScaleY(id:String, toScale:Float, time:Float, easeStr:String = "", onComplete:String = "")</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_reflection">Reflection</h2>
+<hr>
+<h3 id="set">set</h3>
+<p class="methodbox">set(property:Dynamic, value:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="get">get</h3>
+<p class="methodbox">get(property:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setClass">setClass</h3>
+<p class="methodbox">setClass(class_name:String, property:Dynamic, value:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getClass">getClass</h3>
+<p class="methodbox">getClass(class_name:String, property:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setProperty">setProperty</h3>
+<p class="methodbox">setProperty(object:String, property:String, value:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getProperty">getProperty</h3>
+<p class="methodbox">getProperty(object:String, property:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getPropertyFromClass">getPropertyFromClass</h3>
+<p class="methodbox">getPropertyFromClass(className:String, variable:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setPropertyFromClass">setPropertyFromClass</h3>
+<p class="methodbox">setPropertyFromClass(className:String, variable:String, value:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_sound">Sound</h2>
+<hr>
+<h3 id="createSound">createSound</h3>
+<p class="methodbox">createSound(id:String, file_Path:String, library:String, ?looped:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="playSound">playSound</h3>
+<p class="methodbox">playSound(id:String, ?forceRestart:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="stopSound">stopSound</h3>
+<p class="methodbox">stopSound(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="removeSound">removeSound</h3>
+<p class="methodbox">removeSound(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="pauseSound">pauseSound</h3>
+<p class="methodbox">pauseSound(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="resumeSound">resumeSound</h3>
+<p class="methodbox">resumeSound(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setSoundVolume">setSoundVolume</h3>
+<p class="methodbox">setSoundVolume(id:String, volume:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getSoundTime">getSoundTime</h3>
+<p class="methodbox">getSoundTime(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="loopSound">loopSound</h3>
+<p class="methodbox">loopSound(id:String, loop:Bool)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_song">Song</h2>
+<hr>
+<h3 id="setSongPosition">setSongPosition</h3>
+<p class="methodbox">setSongPosition(position:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="stopSong">stopSong</h3>
+<p class="methodbox">stopSong()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="endSong">endSong</h3>
+<p class="methodbox">endSong()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getSongPosition">getSongPosition</h3>
+<p class="methodbox">getSongPosition()</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_shader">Shader</h2>
+<hr>
+<h3 id="tweenShader">tweenShader</h3>
+<p class="methodbox">tweenShader(id:String, property:String, value:Float, duration:Float, ease:String = "linear", startDelay:Float = 0.0, ?onComplete:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="initShader">initShader</h3>
+<p class="methodbox">initShader(id:String, frag:String, ?vert:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setShaderProperty">setShaderProperty</h3>
+<p class="methodbox">setShaderProperty(id:String, property:String, value:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenShaderProperty">tweenShaderProperty</h3>
+<p class="methodbox">tweenShaderProperty(id:String, property:String, value:Float, duration:Float, ease:String = "linear", startDelay:Float = 0.0, ?onComplete:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="createCustomShader">createCustomShader</h3>
+<p class="methodbox">createCustomShader(id:String, frag:String, ?vert:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_window">Window</h2>
+<hr>
+<h3 id="setWindowPos">setWindowPos</h3>
+<p class="methodbox">setWindowPos(x:Int, y:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getWindowX">getWindowX</h3>
+<p class="methodbox">getWindowX()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getWindowY">getWindowY</h3>
+<p class="methodbox">getWindowY()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCenteredWindowX">getCenteredWindowX</h3>
+<p class="methodbox">getCenteredWindowX()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCenteredWindowY">getCenteredWindowY</h3>
+<p class="methodbox">getCenteredWindowY()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="resizeWindow">resizeWindow</h3>
+<p class="methodbox">resizeWindow(Width:Int, Height:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getScreenWidth">getScreenWidth</h3>
+<p class="methodbox">getScreenWidth()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getScreenHeight">getScreenHeight</h3>
+<p class="methodbox">getScreenHeight()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getWindowWidth">getWindowWidth</h3>
+<p class="methodbox">getWindowWidth()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getWindowHeight">getWindowHeight</h3>
+<p class="methodbox">getWindowHeight()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCanFullscreen">setCanFullscreen</h3>
+<p class="methodbox">setCanFullscreen(can_Fullscreen:Bool)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_trail">Trail / Reflection</h2>
+<hr>
+<h3 id="setActorTrailVisible">setActorTrailVisible</h3>
+<p class="methodbox">setActorTrailVisible(id:String, visibleVal:Bool)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getActorTrailVisible">getActorTrailVisible</h3>
+<p class="methodbox">getActorTrailVisible(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorReflection">setActorReflection</h3>
+<p class="methodbox">setActorReflection(id:String, r:Bool)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorReflectionYOffset">setActorReflectionYOffset</h3>
+<p class="methodbox">setActorReflectionYOffset(id:String, y:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorReflectionAlpha">setActorReflectionAlpha</h3>
+<p class="methodbox">setActorReflectionAlpha(id:String, a:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setActorReflectionColor">setActorReflectionColor</h3>
+<p class="methodbox">setActorReflectionColor(id:String, color:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_mod">MODCHARTING_TOOLS</h2>
+<hr>
+<h3 id="ease">ease</h3>
+<p class="methodbox">ease(beat:Float, time:Float, easeStr:String, argsAsString:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_math">Math</h2>
+<hr>
+<h3 id="bound">bound</h3>
+<p class="methodbox">bound(value:Float, ?Min:Float, ?Max:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="boundTo">boundTo</h3>
+<p class="methodbox">boundTo(value:Float, Min:Float, Max:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="distanceBetween">distanceBetween</h3>
+<p class="methodbox">distanceBetween(SpriteA:String, SpriteB:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="distanceToMouse">distanceToMouse</h3>
+<p class="methodbox">distanceToMouse(sprite:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="distanceToPoint">distanceToPoint</h3>
+<p class="methodbox">distanceToPoint(sprite:String, x:Float, y:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="dotProduct">dotProduct</h3>
+<p class="methodbox">dotProduct(ax:Float, ay:Float, bx:Float, by:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="equal">equal</h3>
+<p class="methodbox">equal(aValueA:Float, aValueB:Float, aDiff:Float = FlxMath.EPSILON)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="fceil">fceil</h3>
+<p class="methodbox">fceil(n:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="ffloor">ffloor</h3>
+<p class="methodbox">ffloor(n:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="fround">fround</h3>
+<p class="methodbox">fround(n:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="isFinite">isFinite</h3>
+<p class="methodbox">isFinite(n:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="isNaN">isNaN</h3>
+<p class="methodbox">isNaN(n:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getDecimals">getDecimals</h3>
+<p class="methodbox">getDecimals(n:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="inBounds">inBounds</h3>
+<p class="methodbox">inBounds(value:Float, min:Null<Float>, max:Null<Float>)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="isDistanceToMouseWithin">isDistanceToMouseWithin</h3>
+<p class="methodbox">isDistanceToMouseWithin(sprite:String, distance:Float, includeEqual:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="isDistanceToPointWithin">isDistanceToPointWithin</h3>
+<p class="methodbox">isDistanceToPointWithin(sprite:String, x:Float, y:Float, distance:Float, includeEqual:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="isDistanceWithin">isDistanceWithin</h3>
+<p class="methodbox">isDistanceWithin(SpriteA:String, SpriteB:String, distance:Float, includeEqual:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="isEven">isEven</h3>
+<p class="methodbox">isEven(n:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="isOdd">isOdd</h3>
+<p class="methodbox">isOdd(n:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="lerp">lerp</h3>
+<p class="methodbox">lerp(a:Float, b:Float, ratio:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="maxAdd">maxAdd</h3>
+<p class="methodbox">maxAdd(value:Int, amount:Int, max:Int, min:Int = 1)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="maxInt">maxInt</h3>
+<p class="methodbox">maxInt(a:Int, b:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="minInt">minInt</h3>
+<p class="methodbox">minInt(a:Int, b:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="numericComparison">numericComparison</h3>
+<p class="methodbox">numericComparison(a:Float, b:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="perlin">perlin</h3>
+<p class="methodbox">perlin(x:Float, y:Float, z:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="pointInCoordinates">pointInCoordinates</h3>
+<p class="methodbox">pointInCoordinates(pointX:Float, pointY:Float, rectX:Float, rectY:Float, rectWidth:Float, rectHeight:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="random">random</h3>
+<p class="methodbox">random()</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="randomBool">randomBool</h3>
+<p class="methodbox">randomBool(chance:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="randomFloat">randomFloat</h3>
+<p class="methodbox">randomFloat(min:Float, max:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="randomInt">randomInt</h3>
+<p class="methodbox">randomInt(min:Int, max:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="remapToRange">remapToRange</h3>
+<p class="methodbox">remapToRange(value:Float, start1:Float, stop1:Float, start2:Float, stop2:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="round">round</h3>
+<p class="methodbox">round(v:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="roundDecimal">roundDecimal</h3>
+<p class="methodbox">roundDecimal(value:Float, percision:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="sameSign">sameSign</h3>
+<p class="methodbox">sameSign(a:Float, b:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="signOf">signOf</h3>
+<p class="methodbox">signOf(n:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="sinh">sinh</h3>
+<p class="methodbox">sinh(n:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="vectorLength">vectorLength</h3>
+<p class="methodbox">vectorLength(dx:Float, dy:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="wrap">wrap</h3>
+<p class="methodbox">wrap(value:Int, min:Int, max:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_utils">Utilities</h2>
+<hr>
+<h3 id="rgbToHsv">rgbToHsv</h3>
+<p class="methodbox">rgbToHsv(r:Int, g:Int, b:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="dominantColor">dominantColor</h3>
+<p class="methodbox">dominantColor(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="dominantColorFrame">dominantColorFrame</h3>
+<p class="methodbox">dominantColorFrame(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="arrayToCSV">arrayToCSV</h3>
+<p class="methodbox">arrayToCSV(data:Array<Int>, width:Int, invert:Bool)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="filterDigits">filterDigits</h3>
+<p class="methodbox">filterDigits(input:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="formatArray">formatArray</h3>
+<p class="methodbox">formatArray(anyArray:Array<Dynamic>)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="formatBytes">formatBytes</h3>
+<p class="methodbox">formatBytes(bytes:Float, precision:Int = 2)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="formatTime">formatTime</h3>
+<p class="methodbox">formatTime(seconds:Float, showMS:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getClassName">getClassName</h3>
+<p class="methodbox">getClassName(object:Dynamic, simple:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="printIP">printIP</h3>
+<p class="methodbox">printIP()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getIP">getIP</h3>
+<p class="methodbox">getIP()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getOption">getOption</h3>
+<p class="methodbox">getOption(saveStr:String, saveKey:String = "main")</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setOption">setOption</h3>
+<p class="methodbox">setOption(saveStr:String, value:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCurrentMod">getCurrentMod</h3>
+<p class="methodbox">getCurrentMod(saveStr:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="assetExists">assetExists</h3>
+<p class="methodbox">assetExists(path:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="fileSystemExists">fileSystemExists</h3>
+<p class="methodbox">fileSystemExists(path:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="existsInMod">existsInMod</h3>
+<p class="methodbox">existsInMod(path:String, mod:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getText">getText</h3>
+<p class="methodbox">getText(path:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getContent">getContent</h3>
+<p class="methodbox">getContent(path:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="parseJson">parseJson</h3>
+<p class="methodbox">parseJson(tag:String, content:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="loadScript">loadScript</h3>
+<p class="methodbox">loadScript(script:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="exists">exists</h3>
+<p class="methodbox">exists(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_input">Input</h2>
+<hr>
+<h3 id="justPressed">justPressed</h3>
+<p class="methodbox">justPressed(key:String = "SPACE")</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="pressed">pressed</h3>
+<p class="methodbox">pressed(key:String = "SPACE")</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="justReleased">justReleased</h3>
+<p class="methodbox">justReleased(key:String = "SPACE")</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="justPressedDodgeKey">justPressedDodgeKey</h3>
+<p class="methodbox">justPressedDodgeKey()</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_health">Misc / Health</h2>
+<hr>
+<h3 id="updateHitbox">updateHitbox</h3>
+<p class="methodbox">updateHitbox(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setBlendMode">setBlendMode</h3>
+<p class="methodbox">setBlendMode(id:String, blend:String = '')</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="color">color</h3>
+<p class="methodbox">color(r:Int, g:Int, b:Int, a:Int = 255)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="colorString">colorString</h3>
+<p class="methodbox">colorString(color:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="colorRGB">colorRGB</h3>
+<p class="methodbox">colorRGB(r:Int, g:Int, b:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="colorRGBA">colorRGBA</h3>
+<p class="methodbox">colorRGBA(r:Int, g:Int, b:Int, a:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="screenCenter">screenCenter</h3>
+<p class="methodbox">screenCenter(id:String, ?direction:String = "xy")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="center">center</h3>
+<p class="methodbox">center(id:String, ?direction:String = "xy")</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setHealth">setHealth</h3>
+<p class="methodbox">setHealth(heal:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getHealth">getHealth</h3>
+<p class="methodbox">getHealth()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="add">add</h3>
+<p class="methodbox">add(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="remove">remove</h3>
+<p class="methodbox">remove(id:String, splice:Bool = true)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="kill">kill</h3>
+<p class="methodbox">kill(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="destroy">destroy</h3>
+<p class="methodbox">destroy(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="insert">insert</h3>
+<p class="methodbox">insert(id:String, position:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getMinHealth">getMinHealth</h3>
+<p class="methodbox">getMinHealth()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getMaxHealth">getMaxHealth</h3>
+<p class="methodbox">getMaxHealth()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h2 style="margin-top:28px;" data-i18n="cat_misc">Misc / Uncategorized</h2>
+<hr>
+<h3 id="setGraphicSize">setGraphicSize</h3>
+<p class="methodbox">setGraphicSize(id:String, width:Float = 0, height:Float = 0)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setStrumlineX">setStrumlineX</h3>
+<p class="methodbox">setStrumlineX(x:Float, ?dontMove:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setStrumlineY">setStrumlineY</h3>
+<p class="methodbox">setStrumlineY(y:Float, ?dontMove:Bool = false)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getBaseScrollSpeed">getBaseScrollSpeed</h3>
+<p class="methodbox">getBaseScrollSpeed()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getScrollSpeed">getScrollSpeed</h3>
+<p class="methodbox">getScrollSpeed()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setScrollSpeed">setScrollSpeed</h3>
+<p class="methodbox">setScrollSpeed(speed:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="triggerEvent">triggerEvent</h3>
+<p class="methodbox">triggerEvent(event_name:String, argument_1:Dynamic, argument_2:Dynamic)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="updateRating">updateRating</h3>
+<p class="methodbox">updateRating()</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getStrumTimeFromStep">getStrumTimeFromStep</h3>
+<p class="methodbox">getStrumTimeFromStep(step:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCustomShaderBool">getCustomShaderBool</h3>
+<p class="methodbox">getCustomShaderBool(id:String, property:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCustomShaderInt">getCustomShaderInt</h3>
+<p class="methodbox">getCustomShaderInt(id:String, property:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="getCustomShaderFloat">getCustomShaderFloat</h3>
+<p class="methodbox">getCustomShaderFloat(id:String, property:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCustomShaderBool">setCustomShaderBool</h3>
+<p class="methodbox">setCustomShaderBool(id:String, property:String, value:Bool)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCustomShaderInt">setCustomShaderInt</h3>
+<p class="methodbox">setCustomShaderInt(id:String, property:String, value:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setCustomShaderFloat">setCustomShaderFloat</h3>
+<p class="methodbox">setCustomShaderFloat(id:String, property:String, value:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_lts">LTS 1.1.9 only</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="addActorTrail">addActorTrail</h3>
+<p class="methodbox">addActorTrail(id:String, length:Int = 10, delay:Int = 3, alpha:Float = 0.4, diff:Float = 0.05)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="removeActorTrail">removeActorTrail</h3>
+<p class="methodbox">removeActorTrail(id:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_both">Both versions</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="startMod">startMod</h3>
+<p class="methodbox">startMod(name:String, modClass:String, type:String = '', pf:Int = -1)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setMod">setMod</h3>
+<p class="methodbox">setMod(name:String, value:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setSubMod">setSubMod</h3>
+<p class="methodbox">setSubMod(name:String, subValName:String, value:Float)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setModTargetLane">setModTargetLane</h3>
+<p class="methodbox">setModTargetLane(name:String, value:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setModPlayfield">setModPlayfield</h3>
+<p class="methodbox">setModPlayfield(name:String, value:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="addPlayfield">addPlayfield</h3>
+<p class="methodbox">addPlayfield(?x:Float = 0, ?y:Float = 0, ?z:Float = 0)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="removePlayfield">removePlayfield</h3>
+<p class="methodbox">removePlayfield(idx:Int)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenModifier">tweenModifier</h3>
+<p class="methodbox">tweenModifier(modifier:String, val:Float, time:Float, ease:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="tweenModifierSubValue">tweenModifierSubValue</h3>
+<p class="methodbox">tweenModifierSubValue(modifier:String, subValue:String, val:Float, time:Float, ease:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setModEaseFunc">setModEaseFunc</h3>
+<p class="methodbox">setModEaseFunc(name:String, ease:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="setModifier">setModifier</h3>
+<p class="methodbox">setModifier(beat:Float, argsAsString:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>
+<h3 id="easeModifier">easeModifier</h3>
+<p class="methodbox">easeModifier(beat:Float, time:Float, easeStr:String, argsAsString:String)</p>
+<p><span class="kathynew-badge" data-i18n="badge_mod">MODCHARTING_TOOLS stub</span>  <span style="color:var(--text-secondary);font-size:0.9em;"><span data-i18n="fn_desc">Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)</span></span></p>
+<hr>		</div>
+
+		<script>
+		(function(){
+			var I18N = {"en": {"badge_both": "Both versions", "badge_lts": "LTS 1.1.9 only", "badge_off": "Official 0.5.0 only", "badge_mod": "MODCHARTING_TOOLS stub", "fn_desc": "Leather Engine compatible API (registered by KathyEngine LeatherLuaScript.hx)", "cat_output": "Output / Debug", "cat_camera": "Camera / HUD", "cat_input": "Input", "cat_misc": "Misc / Uncategorized", "cat_health": "Misc / Health", "cat_sprite": "Sprite / Object Creation", "cat_actor": "Actor Control", "cat_character": "Character", "cat_sound": "Sound", "cat_text": "Text", "cat_stage": "Stage", "cat_tween": "Tween", "cat_notes": "Notes", "cat_reflection": "Reflection", "cat_song": "Song", "cat_utils": "Utilities", "cat_shader": "Shader", "cat_math": "Math", "cat_window": "Window", "cat_trail": "Trail / Reflection", "cat_mod": "MODCHARTING_TOOLS", "page_h1": "Leather Engine Functions", "page_intro_1": "Leather Engine (LE) mod script compatibility layer API.", "page_intro_2": "Registered by KathyEngine <span class=\"methodexample\">LeatherLuaScript.hx</span> (384 functions in total); active when the chart format is LEATHER / LEATHER LTS and <span class=\"methodexample\">leatherScriptCompat</span> is not off.", "page_intro_3": "Sources: Official 0.5.0 <span class=\"methodexample\">ModchartUtilities.hx</span> (212) and LTS 1.1.9 <span class=\"methodexample\">LuaScript.hx</span> (373).", "page_intro_4": "Version semantics: LTS-only functions are removed in official mode (calling them errors with nil); official-only exist only in Official; both means available in both. MODCHARTING_TOOLS stubs only log a message (Kathy has no such system).", "page_note": "Kathy adaptations: no standalone strumLine object (setStrumlineX/Y move members directly); note speed field is multSpeed; flixel 5.9 has no FlxTween.id (tweens registered with auto-increment keys); FlxSound loop field is looped; BaseStage.add is package-private (stage objects attach to PlayState); SwagSong has no character position fields (getOriginalCharX/Y return 0).", "lang_btn": "中文", "page_credits": "Special thanks to the <span class=\"methodexample\">Leather Engine</span> team — Official 0.5.0 (ModchartUtilities.hx) and LTS 1.1.9 (LuaScript.hx) — for their modchart scripting systems, which this compatibility layer is ported from. Also thanks to PsychEngine for the base Lua API this site documents.", "page_tribute": "Tribute to the FIRST \"true soft moddable\" engine: <span class=\"methodexample\">Leather Engine</span>"}, "zh": {"badge_both": "两版本通用", "badge_lts": "LTS 1.1.9 独有", "badge_off": "Official 0.5.0 独有", "badge_mod": "MODCHARTING_TOOLS 占位", "fn_desc": "Leather Engine 兼容 API（由 KathyEngine LeatherLuaScript.hx 注册）", "cat_output": "输出 / 调试", "cat_camera": "相机 / HUD", "cat_input": "输入", "cat_misc": "杂项 / 未分类", "cat_health": "杂项 / 血量", "cat_sprite": "精灵 / 对象创建", "cat_actor": "演员控制", "cat_character": "角色", "cat_sound": "声音", "cat_text": "文本", "cat_stage": "舞台", "cat_tween": "补间动画", "cat_notes": "音符", "cat_reflection": "反射", "cat_song": "歌曲", "cat_utils": "工具", "cat_shader": "着色器", "cat_math": "数学", "cat_window": "窗口", "cat_trail": "残影 / 反射", "cat_mod": "MODCHARTING_TOOLS", "page_h1": "Leather Engine 函数", "page_intro_1": "Leather Engine（LE）模组脚本兼容层 API。", "page_intro_2": "由 KathyEngine 的 <span class=\"methodexample\">LeatherLuaScript.hx</span> 注册（共 384 个函数），当谱面 format 为 LEATHER / LEATHER LTS 且 <span class=\"methodexample\">leatherScriptCompat</span> 不为 off 时启用。", "page_intro_3": "函数来源：Official 0.5.0 <span class=\"methodexample\">ModchartUtilities.hx</span>（212 个）与 LTS 1.1.9 <span class=\"methodexample\">LuaScript.hx</span>（373 个）。", "page_intro_4": "版本语义：LTS 独有函数在 official 模式下会被注销（调用报 nil）；Official 独有仅存在于 Official；两版本通用即双方都有。MODCHARTING_TOOLS 占位仅输出提示（Kathy 无此系统）。", "page_note": "Kathy 适配差异：判定线无独立 strumLine 对象（setStrumlineX/Y 直接移动成员）；音符速度字段为 multSpeed；flixel 5.9 无 FlxTween.id（tween 用自增 key 注册）；FlxSound 循环字段为 looped；BaseStage.add 为包内私有（舞台对象直接挂 PlayState）；SwagSong 无角色坐标字段（getOriginalCharX/Y 返回 0）。", "lang_btn": "English", "page_credits": "特别感谢 <span class=\"methodexample\">Leather Engine</span> 开发团队：Official 0.5.0（ModchartUtilities.hx）与 LTS 1.1.9（LuaScript.hx），本兼容层即移植自其 modchart 脚本系统。同时感谢 PsychEngine 提供了本站所记录的 Lua API 基础。", "page_tribute": "致敬首个“真正支持软编程”的引擎：<span class=\"methodexample\">Leather Engine</span>"}};
+			var lang = 'en';
+			try { lang = localStorage.getItem('kathyLang') || 'en'; } catch(e){}
+			if (lang !== 'en' && lang !== 'zh') lang = 'en';
+			function apply(l){
+				document.querySelectorAll('[data-i18n]').forEach(function(el){
+					var k = el.getAttribute('data-i18n');
+					if (I18N[l] && I18N[l][k] !== undefined) el.innerHTML = I18N[l][k];
+				});
+				var btn = document.getElementById('langToggle');
+				if (btn) btn.textContent = (l === 'en') ? '中' : 'EN';
+				try { localStorage.setItem('kathyLang', l); } catch(e){}
+			}
+			var btn = document.getElementById('langToggle');
+			if (btn) btn.addEventListener('click', function(){ lang = (lang === 'en') ? 'zh' : 'en'; apply(lang); });
+			apply(lang);
+		})();
+		</script>
+	</body>
+</html>

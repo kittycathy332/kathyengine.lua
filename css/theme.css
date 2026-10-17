@@ -10,6 +10,7 @@
 	border-radius: 60px;
 	background-color: var(--bg-secondary);
 	visibility: hidden;
+	z-index: 998;
 }
 
 .themeBtn
@@ -25,6 +26,7 @@
 	border-radius: 50px;
 	transition: 0.2s;
 	color: var(--text-primary);
+	z-index: 998;
 }
 .themeBtn:hover
 {
@@ -46,6 +48,7 @@
 	height: 10px;
 	margin-top: 20px;
 	margin-left: 20px;
+	z-index: 998;
 }
 
 /* ===== KathyEngine Custom Styles ===== */
@@ -81,4 +84,35 @@
 h2[style*="var(--kathy-color)"]
 {
 	background: linear-gradient(90deg, var(--kathy-color-dim), transparent);
+}
+
+/* ===== KathyEngine Language Toggle (bottom-right, like themeBox) ===== */
+.langBox
+{
+	position: fixed;
+	bottom: 103px;
+	right: 70px;
+	width: 40px;
+	height: 40px;
+	background-color: var(--border-color);
+	outline: 0;
+	border: 0;
+	border-radius: 50px;
+	transition: 0.2s;
+	color: var(--text-primary);
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 14px;
+	z-index: 999;
+	line-height: 40px;
+	text-align: center;
+}
+.langBox:hover
+{
+	background-color: var(--hover-color);
+	color: white;
+}
+.langBox:active
+{
+	background-color: var(--bg-tertiary);
 }

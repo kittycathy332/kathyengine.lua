@@ -18,6 +18,7 @@
 			<div class="themeDot" style="margin-left: 70px"></div>
 			<button class="themeBtn" id="themeSelector"></button>
 		</div>
+		<button class="langBox" id="langToggle" title="Switch language">中</button>
 
 		<!-- Load JavaScript-->
 		<script src="js/selector.js"></script>
@@ -37,13 +38,9 @@
 
 		<!-- Page Info -->
 		<div class="infobox">
-			<h1>Home Page</h1>
+			<h1 data-i18n="home_h1">Home Page</h1>
 			<hr>
-			<p>This site draws heavy inspiration from the Flixel API website, and huge props to its developers.
-			<br>This site is also built upon the PsychEngine Lua API website; many thanks to their team.
-			<p>These pages are intended for Kathy Engine v1.1+, so it might NOT be reliable for OLDER versions.
-			<br>Support for other versions will not be added to these pages.
-			</p>
+			<p data-i18n="home_intro">This site draws heavy inspiration from the Flixel API website, and huge props to its developers.<br>This site is also built upon the PsychEngine Lua API website; many thanks to their team.<br>These pages are intended for Kathy Engine v1.1+, so it might NOT be reliable for OLDER versions. Support for other versions will not be added to these pages.</p>
 			<div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
 				<img width="100" src="assets/kathylogo.svg" alt="Kathy Engine Logo" draggable="false">
 				<span style="font-size: 40px; font-weight: bold; color: var(--text-primary);">+</span>
@@ -51,12 +48,11 @@
 			</div>
 			
 			<hr>
-			<h2>VS Code Extension</h2>
-			<p><a href="https://gamebanana.com/tools/10716">It's highly recommended for you to install it</a>, as it auto-completes function names.
-			</br>This is an unofficial tool though.</p>
+			<h2 data-i18n="home_vscode_h">VS Code Extension</h2>
+				<p data-i18n="home_vscode_p"><a href="https://gamebanana.com/tools/10716">It's highly recommended for you to install it</a>, as it auto-completes function names.<br>This is an unofficial tool though.</p>
 			<hr>
-			<h2>Running a script</h2>
-			<h3>There are 6 types of LUA Scripts you can run:</h3>
+			<h2 data-i18n="home_run_h">Running a script</h2>
+				<h3 data-i18n="home_run_sub">There are 6 types of LUA Scripts you can run:</h3>
 
 			<ul class="methoddiv">
 				<li class="exampleitem"><b>Stage Script:</b> It will only run if the song's stage is loaded in the current chart, it should have the same name as your stage's .JSON file and should be inside <span class="methodexample">mods/My-Mod/stages/</span>.</li>
@@ -67,10 +63,11 @@
 				<li class="exampleitem"><b>General Script:</b> It should be saved in <span class="methodexample">mods/My-Mod/scripts/</span>, it will always run in every Song as long as the Mod is loaded.</li>
 			</ul>
 			<hr>
-			<h2>Functions</h2>
-			<h3>There are 24 pages available with 225 functions:</h3>
-			<p style="color: var(--text-secondary); font-size: 0.9em;">Items tagged <span class="kathynew-badge">Kathy Engine</span> are new features added by Kathy Engine, which the original PsychEngine Lua API site does not cover.</p>
+			<h2 data-i18n="home_func_h">Functions</h2>
+			<h3 data-i18n="home_func_sub">There are 25 pages available with 225 functions (+384 Leather Engine functions):</h3>
+			<p style="color: var(--text-secondary); font-size: 0.9em;" data-i18n="home_func_note">Items tagged <span class="kathynew-badge">Kathy Engine</span> are new features added by Kathy Engine, which the original PsychEngine Lua API site does not cover.</p>
 			<ul>
+				<li><a href="pages/leather.html">Leather Engine Functions</a> <span class="kathynew-badge">Kathy Engine</span></li>
 				<li><a href="pages/playstate.html">PlayState Functions</a></li>
 				<li><a href="pages/reflection.html">Reflection Functions</a></li>
 				<li><a href="pages/spritesheet.html">Spritesheet Functions</a></li>
@@ -97,12 +94,34 @@
 				<li><a href="pages/uncategorized.html">Uncategorized Functions</a></li>
 			</ul>
 			<br><hr>
-			<h2>Other Pages</h2>
+			<h2 data-i18n="home_other_h">Other Pages</h2>
 			<ul>
 				<li><a href="pages/variables.html">List of all 106 Variables</a></li>
 				<li><a href="pages/snippets.html">Code Snippets</a></li>
 			</ul>
-			<p style="color: var(--text-secondary); font-size: 0.9em;">Tip: use the sidebar to jump between pages, and the search bar at the top to search all functions and variables across the entire site.</p>
+			<p style="color: var(--text-secondary); font-size: 0.9em;" data-i18n="home_tip">Tip: use the sidebar to jump between pages, and the search bar at the top to search all functions and variables across the entire site.</p>
 		</div>
+	
+		<script>
+		(function(){
+			var I18N = {"en": {"home_h1": "Home Page", "home_intro": "This site draws heavy inspiration from the Flixel API website, and huge props to its developers.<br>This site is also built upon the PsychEngine Lua API website; many thanks to their team.<br>These pages are intended for Kathy Engine v1.1+, so it might NOT be reliable for OLDER versions. Support for other versions will not be added to these pages.", "home_vscode_h": "VS Code Extension", "home_vscode_p": "<a href=\"https://gamebanana.com/tools/10716\">It's highly recommended for you to install it</a>, as it auto-completes function names.<br>This is an unofficial tool though.", "home_run_h": "Running a script", "home_run_sub": "There are 6 types of LUA Scripts you can run:", "home_func_h": "Functions", "home_func_sub": "There are 25 pages available with 225 functions (+384 Leather Engine functions):", "home_func_note": "Items tagged <span class=\"kathynew-badge\">Kathy Engine</span> are new features added by Kathy Engine, which the original PsychEngine Lua API site does not cover.", "home_other_h": "Other Pages", "home_tip": "Tip: use the sidebar to jump between pages, and the search bar at the top to search all functions and variables across the entire site."}, "zh": {"home_h1": "主页", "home_intro": "本站深受 Flixel API 网站启发，感谢其开发者。<br>本站也基于 PsychEngine Lua API 网站搭建，感谢其开发团队。<br>这些页面面向 Kathy Engine v1.1+，可能不适用于更早的版本，不会为其他版本添加支持。", "home_vscode_h": "VS Code 插件", "home_vscode_p": "<a href=\"https://gamebanana.com/tools/10716\">强烈建议安装</a>，它可以自动补全函数名。<br>不过它是非官方工具。", "home_run_h": "运行脚本", "home_run_sub": "可以运行 6 种 LUA 脚本：", "home_func_h": "函数", "home_func_sub": "共 25 个页面、225 个函数（+384 个 Leather Engine 函数）：", "home_func_note": "带有 <span class=\"kathynew-badge\">Kathy Engine</span> 标记的项目是 Kathy Engine 新增功能，原始 PsychEngine Lua API 网站不涵盖。", "home_other_h": "其他页面", "home_tip": "提示：使用侧边栏在页面间跳转，用顶部搜索框可搜索全站函数与变量。"}};
+			var lang = 'en';
+			try { lang = localStorage.getItem('kathyLang') || 'en'; } catch(e){}
+			if (lang !== 'en' && lang !== 'zh') lang = 'en';
+			function apply(l){
+				document.querySelectorAll('[data-i18n]').forEach(function(el){
+					var k = el.getAttribute('data-i18n');
+					if (I18N[l] && I18N[l][k] !== undefined) el.innerHTML = I18N[l][k];
+				});
+				var btn = document.getElementById('langToggle');
+				if (btn) btn.textContent = (l === 'en') ? '中' : 'EN';
+				try { localStorage.setItem('kathyLang', l); } catch(e){}
+			}
+			var btn = document.getElementById('langToggle');
+			if (btn) btn.addEventListener('click', function(){ lang = (lang === 'en') ? 'zh' : 'en'; apply(lang); });
+			apply(lang);
+		})();
+		</script>
 	</body>
+</html>
 </html>

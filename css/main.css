@@ -6,6 +6,14 @@
 	font-style: normal;
 }
 
+@font-face
+{
+	font-family: 'Fusion Pixel Monospaced';
+	src: url('../assets/fonts/fusion-pixel-12px-monospaced-zh_hans.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
 /* CSS Variables for Theme Colors */
 :root
 {
@@ -102,6 +110,8 @@ hr
 	border: 2px solid var(--border-color);
 	width: fit-content;
 	background-color: var(--bg-tertiary);
+	font-family: 'Fusion Pixel Monospaced', monospace;
+	font-size: 14px;
 }
 
 .methoddiv
@@ -115,7 +125,8 @@ hr
 	background-color: var(--bg-tertiary);
 	width: fit-content;
 	border-radius: 4px;
-	font-family: monospace;
+	font-family: 'Fusion Pixel Monospaced', monospace;
+	font-size: 14px;
 }
 
 .exampleitem
@@ -143,6 +154,7 @@ hr
 .haxecode
 {
 	color: #ff922b;
+	font-family: 'Fusion Pixel Monospaced', monospace;
 }
 
 @media (max-width: 910px) {
